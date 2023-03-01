@@ -5,3 +5,4 @@ export type IconType = FC<IconProps>;
 export { default as X } from "./X";
 export { default as Note } from "./Note";
 export { default as Themes } from "./Themes";
+export { default as Check } from "./Check";
