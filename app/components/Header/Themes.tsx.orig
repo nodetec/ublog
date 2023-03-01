@@ -7,24 +7,24 @@ import { themes } from "@/ublog.config";
 interface ThemesProps {}
 
 const Themes: FC<ThemesProps> = ({}) => {
-  const [active, setActive] = useState(themes[0]);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("_theme");
-    if (!!stored) {
-      setActive(JSON.parse(stored));
-    } else {
-      setActive(themes[0]);
-    }
-  }, []);
-
-  const handleThemeChange = (theme: string) => {
-    localStorage.setItem("_theme", JSON.stringify(theme));
-    setActive(theme);
-  };
+<<<<<<< HEAD
+  const stored = themes[0];
+||||||| 3a3588a
+  const stored =
+    typeof window === "undefined"
+      ? themes[0]
+      : JSON.parse(localStorage.getItem("_theme") || themes[0]);
+=======
+  const stored =
+    typeof window === "undefined"
+      ? themes[0]
+      : JSON.parse(localStorage.getItem("daisythemes") || themes[0]);
+>>>>>>> mahcodes/dev
+  const [active, setActive] = useState(stored);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", active);
+    localStorage.setItem("daisythemes", JSON.stringify(active || null));
   }, [active]);
 
   return (
@@ -42,7 +42,7 @@ const Themes: FC<ThemesProps> = ({}) => {
               className="outline-base-content overflow-hidden rounded-lg text-left [&_svg]:visible"
               data-set-theme={theme}
               data-act-class="[&_svg]:visible"
-              onClick={() => handleThemeChange(theme)}
+              onClick={() => setActive(theme)}
             >
               <div
                 data-theme={theme}
