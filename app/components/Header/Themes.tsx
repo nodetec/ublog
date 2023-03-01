@@ -10,12 +10,12 @@ const Themes: FC<ThemesProps> = ({}) => {
   const stored =
     typeof window === "undefined"
       ? themes[0]
-      : JSON.parse(localStorage.getItem("theme") || themes[0]);
+      : JSON.parse(localStorage.getItem("daisythemes") || themes[0]);
   const [active, setActive] = useState(stored);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", active);
-    localStorage.setItem("_theme", JSON.stringify(active));
+    localStorage.setItem("daisythemes", JSON.stringify(active || null));
   }, [active]);
 
   return (
