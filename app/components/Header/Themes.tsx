@@ -12,7 +12,7 @@ const Themes: FC<ThemesProps> = ({}) => {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", active);
-    localStorage.setItem("_theme", JSON.stringify(active));
+    localStorage.setItem("daisythemes", JSON.stringify(active || null));
   }, [active]);
 
   return (
