@@ -11,6 +11,7 @@ import { KeysContext } from "@/app/context/keys-context";
 import { nip19 } from "nostr-tools";
 import CreatableSelect from "react-select/creatable";
 import { FeedContext } from "@/app/context/feed-context";
+import { Note } from "@/app/icons";
 
 const Write = () => {
   // @ts-ignore
@@ -230,11 +231,10 @@ const Write = () => {
           <button onClick={handlePublish}>Publish</button>
         </>
       ) : (
-        <Link
-          className="flex gap-2 text-gray hover:text-gray-hover"
-          href="/write"
-        >
-          <span className="text-sm">Write</span>
+        <Link href="/write">
+          <button className="btn btn-ghost btn-circle">
+            <Note size="18" />
+          </button>
         </Link>
       )}
     </>

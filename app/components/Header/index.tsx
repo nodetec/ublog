@@ -3,6 +3,7 @@ import { logo, title } from "@/ublog.config";
 import Link from "next/link";
 import Login from "./Login";
 import Write from "./Write";
+import Themes from "./Themes";
 
 interface HeaderProps {}
 
@@ -16,6 +17,7 @@ const Header: FC<HeaderProps> = () => (
         {title}
       </Link>
     </div>
+    <Themes />
     <Write />
     <Login />
   </div>

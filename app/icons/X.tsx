@@ -1,4 +1,4 @@
-import IconProps from "./IconProps";
+import IconProps from "./types/IconProps";
 
 const X: React.FC<IconProps> = ({ size = 24, ...props }) => (
   <svg
