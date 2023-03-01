@@ -10,7 +10,7 @@ const Themes: FC<ThemesProps> = ({}) => {
   const stored =
     typeof window === "undefined"
       ? themes[0]
-      : JSON.parse(localStorage.getItem("_theme") || themes[0]);
+      : JSON.parse(localStorage.getItem("theme") || themes[0]);
   const [active, setActive] = useState(stored);
 
   useEffect(() => {
