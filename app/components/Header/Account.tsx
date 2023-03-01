@@ -94,6 +94,12 @@ const Account: FC<AccountProps> = ({ pubkey }) => {
     getEvents();
   }, [relayUrl, activeRelay]);
 
+  const logoutHandler = () => {
+    localStorage.removeItem("shouldReconnect");
+    setUser({});
+    window.location.reload();
+  };
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -109,7 +115,7 @@ const Account: FC<AccountProps> = ({ pubkey }) => {
           <button>Settings</button>
         </li>
         <li>
-          <a>Logout</a>
+          <button onClick={logoutHandler}>Logout</button>
         </li>
       </ul>
     </div>
