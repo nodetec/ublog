@@ -17,9 +17,11 @@ const Header: FC<HeaderProps> = () => (
         {title}
       </Link>
     </div>
-    <Themes />
-    <Write />
-    <Login />
+    <div className="flex items-center gap-2">
+      <Write />
+      <Themes />
+      <Login />
+    </div>
   </div>
 );
 

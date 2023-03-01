@@ -7,7 +7,10 @@ import { themes } from "@/ublog.config";
 interface ThemesProps {}
 
 const Themes: FC<ThemesProps> = ({}) => {
-  const stored = JSON.parse(localStorage.getItem("_theme") || themes[0]);
+  const stored =
+    typeof window === "undefined"
+      ? themes[0]
+      : JSON.parse(localStorage.getItem("_theme") || themes[0]);
   const [active, setActive] = useState(stored);
 
   useEffect(() => {
@@ -19,7 +22,7 @@ const Themes: FC<ThemesProps> = ({}) => {
     <div className="dropdown dropdown-end" title="Change Theme">
       <div className="btn gap-1 normal-case btn-ghost" tabIndex={0}>
         <ThemesIcon />
-        <span>Themes</span>
+        <span>Theme</span>
         <ChevronDown />
       </div>
       <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 h-[70vh] w-52 overflow-y-auto shadow-2xl mt-16">
