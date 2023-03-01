@@ -2,6 +2,7 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { KeysContext } from "@/app/context/keys-context";
 import { X } from "@/app/icons";
+import Account from "./Account";
 
 const Login = () => {
   const { keys, setKeys } = useContext(KeysContext);
@@ -22,7 +23,7 @@ const Login = () => {
       if (shouldReconnect === "true") {
         // @ts-ignore
         const publicKey = await nostr.getPublicKey();
-        setKeys({ ...keys, publicKey });
+        setKeys((keys) => ({ ...keys, publicKey }));
       }
 
       // @ts-ignore
@@ -53,7 +54,7 @@ const Login = () => {
     if (typeof window.nostr !== "undefined") {
       // @ts-ignore
       const publicKey = await nostr.getPublicKey();
-      setKeys({...keys , publicKey });
+      setKeys((keys) => ({ ...keys, publicKey }));
       localStorage.setItem("shouldReconnect", "true");
     }
 
@@ -68,15 +69,20 @@ const Login = () => {
   };
 
   return (
-    <>
+    <Fragment>
       {isLightningConnected && keys?.publicKey ? (
-        <h1>account</h1>
+        <Account pubkey={keys.publicKey} />
       ) : (
         <Fragment>
           <label htmlFor="my-modal" className="btn btn-outline">
             login
           </label>
-          <input type="checkbox" ref={modalRef} id="my-modal" className="modal-toggle" />
+          <input
+            type="checkbox"
+            ref={modalRef}
+            id="my-modal"
+            className="modal-toggle"
+          />
           <label htmlFor="my-modal" className="modal cursor-pointer">
             <label className="modal-box relative" htmlFor="">
               <label
@@ -87,8 +93,8 @@ const Login = () => {
               </label>
               <h3 className="text-xl font-bold mb-4">Login</h3>
               {typeof window !== "undefined" &&
-                // @ts-ignore
-                typeof window.nostr === "undefined" ? (
+              // @ts-ignore
+              typeof window.nostr === "undefined" ? (
                 <Fragment>
                   <p className="py-4">
                     Install Alby Extension and setup keys to Login
@@ -111,7 +117,10 @@ const Login = () => {
                   </a>
                 </Fragment>
               ) : (
-                <button className="btn btn-outline btn-block" onClick={loginHandler} >
+                <button
+                  className="btn btn-outline btn-block"
+                  onClick={loginHandler}
+                >
                   {isLightningConnected ? "Connected" : "Login with Extension"}
                 </button>
               )}
@@ -119,7 +128,7 @@ const Login = () => {
           </label>
         </Fragment>
       )}
-    </>
+    </Fragment>
   );
 };
 
