@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const { themes } = require("./ublog.config");
 
 module.exports = {
   content: [
@@ -7,48 +8,22 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      container: {
+        center: true,
+        padding: "1rem",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
     styled: true,
-    themes: true,
     base: true,
     utils: true,
     logs: true,
     rtl: false,
     prefix: "",
     darkTheme: "dark",
-    themes: [
-      "light",
-      "dark",
-      "cupcake",
-      "bumblebee",
-      "emerald",
-      "corporate",
-      "synthwave",
-      "retro",
-      "cyberpunk",
-      "valentine",
-      "halloween",
-      "garden",
-      "forest",
-      "aqua",
-      "lofi",
-      "pastel",
-      "fantasy",
-      "wireframe",
-      "black",
-      "luxury",
-      "dracula",
-      "cmyk",
-      "autumn",
-      "business",
-      "acid",
-      "lemonade",
-      "night",
-      "coffee",
-      "winter",
-    ],
+    themes,
   },
 };

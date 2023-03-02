@@ -8,21 +8,24 @@ import RelayProvider from "./relay-context";
 import UserProvider from "./user-context";
 import FeedProvider from "./feed-context";
 import ToastProvider from "./toast-context";
+import ProfilesProvider from "./profiles-context";
 
 const Providers: FC<{ children: ReactNode }> = ({ children }) => (
-  <KeysProvider>
-    <FollowingProvider>
+  <RelayProvider>
+    <BlogProvider>
       <UserProvider>
-        <BlogProvider>
+        <FollowingProvider>
           <FeedProvider>
-            <ToastProvider>
-              <RelayProvider>{children}</RelayProvider>
-            </ToastProvider>
+            <ProfilesProvider>
+              <ToastProvider>
+                <KeysProvider>{children}</KeysProvider>
+              </ToastProvider>
+            </ProfilesProvider>
           </FeedProvider>
-        </BlogProvider>
+        </FollowingProvider>
       </UserProvider>
-    </FollowingProvider>
-  </KeysProvider>
+    </BlogProvider>
+  </RelayProvider>
 );
 
 export default Providers;

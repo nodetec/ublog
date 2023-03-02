@@ -27,6 +27,8 @@ const Themes: FC<ThemesProps> = ({}) => {
     document.documentElement.setAttribute("data-theme", active);
   }, [active]);
 
+  if (themes.length <= 1) return null;
+
   return (
     <div className="dropdown dropdown-end" title="Change Theme">
       <div className="btn gap-1 normal-case btn-ghost" tabIndex={0}>
