@@ -3,11 +3,13 @@ import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { KeysContext } from "@/app/context/keys-context";
 import { X } from "@/app/icons";
 import Account from "./Account";
+import { ToastContext } from "@/app/context/toast-context";
 
 const Login = () => {
   const { keys, setKeys } = useContext(KeysContext);
   const [isLightningConnected, setIsLightningConnected] = useState(false);
   const modalRef = useRef<HTMLInputElement>(null);
+  const { createToast } = useContext(ToastContext);
 
   useEffect(() => {
     const shouldReconnect = localStorage.getItem("shouldReconnect");
@@ -64,6 +66,7 @@ const Login = () => {
       await window.webln.enable();
     }
     console.log("connected ");
+    createToast({ message: "connected", type: "success" });
     setIsLightningConnected(true);
     modalRef.current?.click();
   };

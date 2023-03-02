@@ -1,8 +1,9 @@
 "use client";
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { RELAYS } from "@/app/lib/constants";
 import { relayInit } from "nostr-tools";
 import type { Relay } from "nostr-tools";
+import { ToastContext } from "@/app/context/toast-context";
 
 interface IRelayContext {
   allRelays: string[];
@@ -56,6 +57,7 @@ const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
   const [relayUrl, setRelayUrl] = useState<string>(RELAYS[0]);
   const [activeRelay, setActiveRelay] = useState<Relay>();
   const [connectedRelays, setConnectedRelays] = useState<Set<Relay>>(new Set());
+  const { createToast } = useContext(ToastContext);
 
   // get custom relays from local storage
   useEffect(() => {
@@ -144,6 +146,10 @@ const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
 
       relay.on("error", () => {
         console.log("error", `❌ nostr (${newRelayUrl}): Connection error!`);
+        createToast({
+          message: `Unable to connect to ${relayUrl}`,
+          type: "error",
+        });
       });
     }
 
