@@ -7,6 +7,7 @@ import KeysProvider from "./keys-context";
 import RelayProvider from "./relay-context";
 import UserProvider from "./user-context";
 import FeedProvider from "./feed-context";
+import ToastProvider from "./toast-context";
 
 const Providers: FC<{ children: ReactNode }> = ({ children }) => (
   <KeysProvider>
@@ -14,7 +15,9 @@ const Providers: FC<{ children: ReactNode }> = ({ children }) => (
       <UserProvider>
         <BlogProvider>
           <FeedProvider>
-            <RelayProvider>{children}</RelayProvider>
+            <ToastProvider>
+              <RelayProvider>{children}</RelayProvider>
+            </ToastProvider>
           </FeedProvider>
         </BlogProvider>
       </UserProvider>
