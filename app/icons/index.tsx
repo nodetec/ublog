@@ -6,3 +6,5 @@ export { default as X } from "./X";
 export { default as Note } from "./Note";
 export { default as Themes } from "./Themes";
 export { default as Check } from "./Check";
+export { default as PatchCheck } from "./PatchCheck";
+export { default as LightningCharge } from "./LightningCharge";

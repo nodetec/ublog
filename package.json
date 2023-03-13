@@ -16,6 +16,7 @@
     "daisyui": "^2.51.2",
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
+    "lnurl-pay": "^2.2.0",
     "next": "13.2.1",
     "nostr-tools": "^1.7.1",
     "react": "18.2.0",

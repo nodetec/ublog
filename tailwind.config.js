@@ -12,6 +12,9 @@ module.exports = {
       container: {
         center: true,
         padding: "1rem",
+        screens: {
+          lg: "768px",
+        },
       },
     },
   },
