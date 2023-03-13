@@ -122,13 +122,13 @@ const Home = () => {
         src={banner}
         alt=""
       />
-      <div className="-translate-y-8 md:px-12 flex items-center md:items-start gap-6 flex-col md:flex-row">
+      <div className="-translate-y-8 md:px-12 flex items-center md:items-start gap-6 flex-col md:flex-row px-4">
         <img
           className="w-24 h-24 min-w-[6rem] rounded-full border-4 border-neutral"
           src={picture}
           alt=""
         />
-        <div className="text-center md:text-start md:mt-10 flex flex-col gap-2">
+        <div className="text-center md:text-start md:mt-10 flex flex-col gap-2 items-center md:items-start">
           {name ? <h2 className="font-bold text-2xl">{name}</h2> : null}
           {nip05 ? (
             <p className="text-sm flex items-center gap-2">
