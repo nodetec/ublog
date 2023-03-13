@@ -3,6 +3,7 @@ import { Event } from "nostr-tools";
 import { UserContext } from "@/app/context/user-context";
 import { RelayContext } from "@/app/context/relay-context";
 import { FollowingContext } from "@/app/context/following-context";
+import Avatar from "./Avatar";
 
 interface AccountProps {
   pubkey: string;
@@ -103,9 +104,7 @@ const Account: FC<AccountProps> = ({ pubkey }) => {
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img src={picture || "https://via.placeholder.com/150"} alt="" />
-        </div>
+        <Avatar src={picture} className="w-8 h-8 fill-base-content" />
       </label>
       <ul
         tabIndex={0}
