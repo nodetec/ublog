@@ -9,7 +9,7 @@ interface FeedProps {
 
 const Feed: FC<FeedProps> = ({ events }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 py-4">
       {events.map((event: Event) => (
         <Article key={event.id} event={event} />
       ))}

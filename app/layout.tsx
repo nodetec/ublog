@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/styles/globals.css";
 import { title, description, favicon } from "@/ublog.config";
 import Header from "@/app/components/Header/";
 import Providers from "@/app/context/providers";
