@@ -1,36 +1,23 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
 import { FeedContext } from "@/app/context/feed-context";
-import { ProfilesContext } from "./context/profiles-context";
-import { RelayContext } from "./context/relay-context";
+import { ProfilesContext } from "@/app/context/profiles-context";
+import { RelayContext } from "@/app/context/relay-context";
+import { NostrService } from "@/app/lib/nostr";
 import { npub } from "@/ublog.config";
-import { nip19 } from "nostr-tools";
-import UserBox from "./components/Header/UserBox";
+import { Event, nip19 } from "nostr-tools";
+import { useContext, useEffect, useState } from "react";
+import Feed from "./components/Feed";
 
 const Home = () => {
   const [events, setEvents] = useState<{ e: Event[]; isLoading: boolean }>({
     e: [],
     isLoading: true,
   });
-  const { feed, setFeed } = useContext(FeedContext);
   // @ts-ignore
-  const { addProfiles, profiles, reload } = useContext(ProfilesContext);
+  const { feed, setFeed } = useContext(FeedContext);
   const { relayUrl, subscribe } = useContext(RelayContext);
-
-  const initialProfile = {
-    name: "",
-    lud16: "",
-    nip05: "",
-    about: "",
-    picture: "",
-    banner: "",
-  };
-
-  const [profile, setProfile] = useState(initialProfile);
-
-  const resetProfile = () => {
-    setProfile(initialProfile);
-  };
+  // @ts-ignore
+  const { addProfiles } = useContext(ProfilesContext);
 
   let profilePubkey = "";
   try {
@@ -38,6 +25,7 @@ const Home = () => {
   } catch (e) {
     console.log(e);
   }
+
   const filter = {
     kinds: [30023],
     authors: [profilePubkey],
@@ -45,8 +33,11 @@ const Home = () => {
     until: undefined,
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const getProfileEvents = async () => {
-    resetProfile();
     let pubkeysSet = new Set<string>();
 
     setEvents({ e: [], isLoading: true });
@@ -88,19 +79,6 @@ const Home = () => {
     subscribe([relayUrl], filter, onEvent, onEOSE);
   };
 
-  const getProfile = () => {
-    let relayName = relayUrl.replace("wss://", "");
-    const profileKey = `profile_${relayName}_${profilePubkey}`;
-    const profile = profiles[profileKey];
-    if (!profile) {
-      addProfiles([profilePubkey]);
-    }
-    if (profile && profile.content) {
-      const profileContent = JSON.parse(profile.content);
-      setProfile(profileContent);
-    }
-  };
-
   // look up blogs
   // look up profile
   useEffect(() => {
@@ -108,12 +86,7 @@ const Home = () => {
     // eslint-disable-next-line
   }, [relayUrl]);
 
-  useEffect(() => {
-    getProfile();
-    // eslint-disable-next-line
-  }, [reload, relayUrl]);
-
-  return <UserBox profile={profile} />;
+  return <Feed events={events.e} isEventsLoading={events.isLoading} />;
 };
 
 export default Home;

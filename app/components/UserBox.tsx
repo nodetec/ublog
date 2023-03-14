@@ -1,6 +1,11 @@
+"use client";
 import { utils } from "lnurl-pay";
 import { LightningCharge, PatchCheck } from "@/app/icons";
-import { FC } from "react";
+import { FC, useContext, useEffect, useState } from "react";
+import { ProfilesContext } from "@/app/context/profiles-context";
+import { RelayContext } from "@/app/context/relay-context";
+import { npub } from "@/ublog.config";
+import { nip19 } from "nostr-tools";
 
 interface Profile {
   name?: string;
@@ -11,15 +16,52 @@ interface Profile {
   banner?: string;
 }
 
-interface UserBoxProps {
-  profile: Profile;
-}
+interface UserBoxProps {}
 
-const UserBox: FC<UserBoxProps> = ({ profile }) => {
+const UserBox: FC<UserBoxProps> = ({}) => {
+  // @ts-ignore
+  const { addProfiles, profiles, reload } = useContext(ProfilesContext);
+  const { relayUrl } = useContext(RelayContext);
+
+  const initialProfile: Profile = {
+    name: "",
+    lud16: "",
+    nip05: "",
+    about: "",
+    picture: "",
+    banner: "",
+  };
+
+  const [profile, setProfile] = useState(initialProfile);
+
+  let profilePubkey = "";
+  try {
+    profilePubkey = nip19.decode(npub).data.toString();
+  } catch (e) {
+    console.log(e);
+  }
+
+  const getProfile = () => {
+    let relayName = relayUrl.replace("wss://", "");
+    const profileKey = `profile_${relayName}_${profilePubkey}`;
+    const profile = profiles[profileKey];
+    if (!profile) {
+      addProfiles([profilePubkey]);
+    }
+    if (profile && profile.content) {
+      const profileContent = JSON.parse(profile.content);
+      setProfile(profileContent);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+    // eslint-disable-next-line
+  }, [reload, relayUrl]);
   const { name, lud16, nip05, about, picture, banner } = profile;
 
   return (
-    <div className="rounded-box bg-neutral text-neutral-content overflow-hidden mt-4">
+    <div className="rounded-box bg-neutral text-neutral-content overflow-hidden my-4">
       {banner ? (
         <img
           className="min-h-[8rem] h-auto max-h-[24rem] w-full object-cover"
