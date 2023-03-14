@@ -1,0 +1,23 @@
+.nocomment {
+  @apply pt-8 mt-12 border-t border-t-base-content text-base-content;
+}
+
+.nocomment > div {
+  @apply px-0 bg-base-100;
+}
+
+.nocomment > div > div:first-of-type {
+  @apply border border-base-content focus-within:border-primary rounded-box p-4;
+}
+
+.nocomment button:first-of-type {
+  @apply btn btn-ghost;
+}
+
+.nocomment button:last-of-type {
+  @apply btn btn-primary;
+}
+
+.nocomment textarea {
+  @apply bg-base-100 focus:border-none focus:outline-none text-base-content;
+}
