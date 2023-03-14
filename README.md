@@ -19,15 +19,16 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
+<!-- PROJECT LOGO -->
+<div align="center">
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![GPL-3.0 License][license-shield]][license-url]
 
-<!-- PROJECT LOGO -->
 <br />
-<div align="center">
+
   <a href="https://github.com/nodetec/ublog">
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Greek_lc_mu.svg" alt="Logo" width="100" height="100">
   </a>
@@ -144,6 +145,7 @@ Project Link: [https://github.com/nodetec/ublog](https://github.com/nodetec/ublo
 
 - [nostr](https://github.com/nostr-protocol/nostr)
 - [blogstack.io](https://github.com/nodetec/blogstack)
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
