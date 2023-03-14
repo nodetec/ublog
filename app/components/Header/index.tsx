@@ -9,7 +9,7 @@ import Themes from "./Themes";
 interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => (
-  <div className="navbar bg-base-100">
+  <nav className="navbar bg-base-100 sticky top-0 z-30">
     <div className="flex-1">
       <Link href="/" className="font-bold text-xl flex gap-2">
         {logo ? (
@@ -25,7 +25,7 @@ const Header: FC<HeaderProps> = () => (
       <Themes />
       <Login />
     </div>
-  </div>
+  </nav>
 );
 
 export default Header;

@@ -61,7 +61,7 @@ const UserBox: FC<UserBoxProps> = ({}) => {
   const { name, lud16, nip05, about, picture, banner } = profile;
 
   return (
-    <div className="rounded-box bg-neutral text-neutral-content overflow-hidden my-4">
+    <div className="rounded-box overflow-hidden my-4">
       {banner ? (
         <img
           className="min-h-[8rem] h-auto max-h-[24rem] w-full object-cover"
@@ -75,7 +75,7 @@ const UserBox: FC<UserBoxProps> = ({}) => {
         }`}
       >
         <img
-          className="w-24 h-24 min-w-[6rem] rounded-full border-4 border-neutral"
+          className="w-24 h-24 min-w-[6rem] rounded-full border-4 border-base-100"
           src={picture}
           alt=""
         />

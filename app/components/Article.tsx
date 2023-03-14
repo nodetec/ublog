@@ -40,18 +40,18 @@ const Article: FC<ArticleProps> = ({ event }) => {
   return (
     <article
       onClick={routeCachedEvent}
-      className="card md:card-side bg-base-100 shadow-xl border-2 border-transparent hover:border-primary cursor-pointer"
+      className="card sm:card-side bg-base-100 hover:shadow-lg border border-base-content border-opacity-20 hover:border-primary cursor-pointer"
     >
       {image ? (
-        <figure className="md:flex-[.35]">
+        <figure className="sm:flex-[.35]">
           <img
-            className="md:h-full md:w-full md:object-cover"
+            className="sm:h-full sm:w-full sm:object-cover"
             src={image}
             alt=""
           />
         </figure>
       ) : null}
-      <div className="card-body md:flex-[.65]">
+      <div className="card-body sm:flex-[.65]">
         {title ? <h2 className="card-title">{title}</h2> : null}
         {summary ? (
           <p>
