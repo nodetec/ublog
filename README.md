@@ -1,14 +1,3 @@
-<div align="center">
-  <span>
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-</div>
-
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
 <a name="readme-top"></a>
@@ -34,8 +23,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![GPL-3.0 License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -172,8 +160,6 @@ Project Link: [https://github.com/nodetec/ublog](https://github.com/nodetec/ublo
 [issues-url]: https://github.com/nodetec/ublog/issues
 [license-shield]: https://img.shields.io/github/license/nodetec/ublog.svg?style=for-the-badge
 [license-url]: https://github.com/nodetec/ublog/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
