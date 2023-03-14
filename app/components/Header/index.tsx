@@ -12,10 +12,12 @@ const Header: FC<HeaderProps> = () => (
   <div className="navbar bg-base-100">
     <div className="flex-1">
       <Link href="/" className="font-bold text-xl flex gap-2">
-        <div className="w-8 rounded-full bg-white">
-          <img src={logo} alt="" />
-        </div>
-        {title}
+        {logo ? (
+          <div className="w-8 rounded-full bg-white">
+            <img src={logo} alt="" />
+          </div>
+        ) : null}
+        {title ? <span>{title}</span> : null}
       </Link>
     </div>
     <div className="flex items-center gap-2">

@@ -28,16 +28,20 @@ const Blog: FC<BlogProps> = ({ event, naddr }) => {
   return (
     <div>
       <div className="prose prose-lg mt-6 md:mt-12">
-        <h1 className="text-4xl font-extrabold">{title}</h1>
-        <img
-          // className="rounded-full w-24 h-24 object-cover mb-4"
-          src={heroImage}
-          alt={""}
-        />
-        <div
-          className="mx-auto w-full h-full"
-          dangerouslySetInnerHTML={{ __html: markdown }}
-        />
+        {title ? <h1 className="text-4xl font-extrabold">{title}</h1> : null}
+        {heroImage ? (
+          <img
+            className="rounded-box w-full h-auto object-contain"
+            src={heroImage}
+            alt={""}
+          />
+        ) : null}
+        {markdown ? (
+          <div
+            className="mx-auto w-full h-full"
+            dangerouslySetInnerHTML={{ __html: markdown }}
+          />
+        ) : null}
       </div>
       {event && naddr && naddr !== "" && (
         <div className={styles.nocomment}>
