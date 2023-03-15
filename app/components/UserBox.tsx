@@ -4,7 +4,6 @@ import { LightningCharge, PatchCheck } from "@/app/icons";
 import { FC, useContext, useEffect, useState } from "react";
 import { ProfilesContext } from "@/app/context/profiles-context";
 import { RelayContext } from "@/app/context/relay-context";
-import { npub } from "@/ublog.config";
 import { nip19 } from "nostr-tools";
 
 interface Profile {
@@ -16,9 +15,11 @@ interface Profile {
   banner?: string;
 }
 
-interface UserBoxProps {}
+interface UserBoxProps {
+  npub: string;
+}
 
-const UserBox: FC<UserBoxProps> = ({}) => {
+const UserBox: FC<UserBoxProps> = ({ npub }) => {
   // @ts-ignore
   const { addProfiles, profiles, reload } = useContext(ProfilesContext);
   const { relayUrl } = useContext(RelayContext);

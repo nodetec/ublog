@@ -1,12 +1,14 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Event } from "nostr-tools";
 import { nip19 } from "nostr-tools";
 import { RelayContext } from "../context/relay-context";
 import { CachedEventContext } from "../context/cached-event-context";
 import { ProfilesContext } from "../context/profiles-context";
 import Blog from "./Blog";
+import { npub } from "@/ublog.config";
+import UserBox from "@/app/components/UserBox";
 
 const BlogPage = () => {
   const pathname = usePathname();
@@ -70,7 +72,12 @@ const BlogPage = () => {
   }, []);
 
   if (event) {
-    return <Blog event={event} naddr={naddrStr} />;
+    return (
+      <Fragment>
+        <UserBox npub={npub} />
+        <Blog event={event} naddr={naddrStr} />;
+      </Fragment>
+    );
   }
 };
 

@@ -5,8 +5,9 @@ import { RelayContext } from "@/app/context/relay-context";
 import { NostrService } from "@/app/lib/nostr";
 import { npub } from "@/ublog.config";
 import { Event, nip19 } from "nostr-tools";
-import { useContext, useEffect, useState } from "react";
-import Feed from "./components/Feed";
+import { Fragment, useContext, useEffect, useState } from "react";
+import Feed from "@/app/components/Feed";
+import UserBox from "@/app/components/UserBox";
 
 const Home = () => {
   const [events, setEvents] = useState<{ e: Event[]; isLoading: boolean }>({
@@ -86,7 +87,12 @@ const Home = () => {
     // eslint-disable-next-line
   }, [relayUrl]);
 
-  return <Feed events={events.e} isEventsLoading={events.isLoading} />;
+  return (
+    <Fragment>
+      <UserBox npub={npub} />
+      <Feed events={events.e} isEventsLoading={events.isLoading} />
+    </Fragment>
+  );
 };
 
 export default Home;

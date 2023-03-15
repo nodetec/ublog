@@ -12,7 +12,7 @@ const Group: FC<GroupProps> = ({ title, children }) => (
       <h2 className="font-bold text-xl">{title}</h2>
       <div className="w-full h-[1px] bg-base-content bg-opacity-20" />
     </div>
-    <div className="flex flex-col gap-2 py-2">{children}</div>
+    <div className="py-2">{children}</div>
   </div>
 );
 

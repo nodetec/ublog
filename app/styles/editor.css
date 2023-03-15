@@ -34,5 +34,5 @@
 }
 
 .editor .rc-md-editor .rc-md-navigation i {
-  @apply text-base-content text-opacity-70 hover:text-opacity-100;
+  @apply text-base-content text-opacity-70 hover:text-primary;
 }
