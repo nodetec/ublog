@@ -1,0 +1,38 @@
+.editor-title,
+.rc-md-editor,
+.rc-md-editor .rc-md-navigation,
+.custom-html-style,
+.rc-md-editor .editor-container .sec-md .input {
+  @apply bg-base-100 text-base-content;
+}
+
+.rc-md-editor .drop-wrap,
+.custom-html-style code,
+.custom-html-style pre {
+  @apply bg-neutral text-neutral-content;
+}
+
+.rc-md-editor .header-list .list-item:hover {
+  @apply bg-primary text-primary-content;
+}
+
+.editor,
+.editor .rc-md-editor .rc-md-navigation,
+.rc-md-editor .drop-wrap,
+.editor .rc-md-editor .editor-container > .section {
+  @apply border-base-content border-opacity-20;
+}
+
+.rc-md-editor .drop-wrap {
+  @apply hover:border-primary;
+}
+
+.editor:focus-within,
+.editor:focus-within .rc-md-editor .rc-md-navigation,
+.editor:focus-within .rc-md-editor .editor-container > .section {
+  @apply border-primary;
+}
+
+.editor .rc-md-editor .rc-md-navigation i {
+  @apply text-base-content text-opacity-70 hover:text-opacity-100;
+}
