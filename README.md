@@ -96,10 +96,10 @@ WIP
 
 ## Roadmap
 
+- [x] Implement settings page
 - [ ] Implement write page
 - [ ] Implement loading ui
 - [ ] Implement lightning tips
-- [ ] Implement settings page
 
 See the [open issues](https://github.com/nodetec/ublog/issues) for a full list of proposed features (and known issues).
 
