@@ -31,7 +31,7 @@ const Themes: FC<ThemesProps> = ({}) => {
 
   return (
     <div className="dropdown dropdown-end" title="Change Theme">
-      <div className="btn gap-1 normal-case btn-ghost" tabIndex={0}>
+      <div className="btn gap-1 normal-case btn-ghost flex-nowrap" tabIndex={0}>
         <ThemesIcon />
         <ChevronDown />
       </div>

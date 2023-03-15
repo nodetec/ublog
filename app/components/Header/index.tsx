@@ -5,6 +5,7 @@ import Link from "next/link";
 import Login from "./Login";
 import Write from "./Write";
 import Themes from "./Themes";
+import Relays from "./Relays";
 
 interface HeaderProps {}
 
@@ -21,6 +22,7 @@ const Header: FC<HeaderProps> = () => (
       </Link>
     </div>
     <div className="flex items-center gap-2">
+      <Relays />
       <Write />
       <Themes />
       <Login />

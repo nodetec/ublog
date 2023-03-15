@@ -8,9 +8,6 @@ import { ToastContext } from "@/app/context/toast-context";
 interface IRelayContext {
   allRelays: string[];
   setAllRelays: React.Dispatch<React.SetStateAction<string[]>>;
-  addRelay: (relay?: string) => void;
-  removeRelay: (relay: string) => void;
-  resetRelays: () => void;
   activeRelay: Relay | undefined;
   setActiveRelay: React.Dispatch<React.SetStateAction<any>>;
   relayUrl: string;
@@ -36,9 +33,6 @@ interface IRelayContext {
 export const RelayContext = createContext<IRelayContext>({
   allRelays: [],
   setAllRelays: () => {},
-  addRelay: () => {},
-  removeRelay: () => {},
-  resetRelays: () => {},
   activeRelay: undefined,
   setActiveRelay: () => {},
   relayUrl: "",
@@ -53,39 +47,11 @@ export const RelayContext = createContext<IRelayContext>({
 const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [allRelays, setAllRelays] = useState<string[]>([]);
+  const [allRelays, setAllRelays] = useState<string[]>(RELAYS);
   const [relayUrl, setRelayUrl] = useState<string>(RELAYS[0]);
   const [activeRelay, setActiveRelay] = useState<Relay>();
   const [connectedRelays, setConnectedRelays] = useState<Set<Relay>>(new Set());
   const { createToast } = useContext(ToastContext);
-
-  // get custom relays from local storage
-  useEffect(() => {
-    const customRelays = JSON.parse(
-      localStorage.getItem("blogstackRelays") || "null"
-    );
-    setAllRelays(customRelays || RELAYS);
-  }, []);
-  // set blogstack relays to local storage
-  useEffect(() => {
-    localStorage.setItem("blogstackRelays", JSON.stringify(allRelays));
-  }, [allRelays]);
-  // reset relays to default
-  const resetRelays = () => {
-    setAllRelays(RELAYS);
-  };
-  // add custom relay
-  const addRelay = (relay?: string) => {
-    if (!relay) return;
-    if (allRelays.includes(relay)) return;
-    const newRelays = [...allRelays, relay.trim()];
-    setAllRelays(newRelays);
-  };
-  // remove relay
-  const removeRelay = (relay: string) => {
-    const newRelays = allRelays.filter((r: string) => r !== relay);
-    setAllRelays(newRelays);
-  };
 
   useEffect(() => {
     connect(relayUrl);
@@ -217,9 +183,6 @@ const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         allRelays,
         setAllRelays,
-        addRelay,
-        removeRelay,
-        resetRelays,
         activeRelay,
         setActiveRelay,
         relayUrl,
