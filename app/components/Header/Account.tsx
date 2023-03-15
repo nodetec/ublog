@@ -4,6 +4,7 @@ import { UserContext } from "@/app/context/user-context";
 import { RelayContext } from "@/app/context/relay-context";
 import { FollowingContext } from "@/app/context/following-context";
 import Avatar from "./Avatar";
+import Link from "next/link";
 
 interface AccountProps {
   pubkey: string;
@@ -93,6 +94,7 @@ const Account: FC<AccountProps> = ({ pubkey }) => {
 
   useEffect(() => {
     getEvents();
+    // eslint-disable-next-line
   }, [relayUrl, activeRelay]);
 
   const logoutHandler = () => {
@@ -111,7 +113,7 @@ const Account: FC<AccountProps> = ({ pubkey }) => {
         className="mt-3 p-2 shadow menu gap-1 menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <button>Settings</button>
+          <Link href="/settings">Settings</Link>
         </li>
         <li>
           <button onClick={logoutHandler}>Logout</button>

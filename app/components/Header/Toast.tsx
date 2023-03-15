@@ -14,7 +14,7 @@ const Toast = () => {
   if (toasts.length === 0) return null;
 
   return (
-    <div className="toast toast-top toast-center">
+    <div className="toast toast-top toast-center z-50 w-max">
       {toasts.map((toast) => (
         <button
           key={toast.id}
