@@ -92,12 +92,30 @@ WIP
 2. Edit `ublog.config.js`
 3. Deploy on vercel
 
+<!-- Configuration -->
+
+## Configuration
+
+All the configuration found in `ublog.config.js`:
+
+| Option       | Usage                          | Description                                                                      |
+| ------------ | ------------------------------ | -------------------------------------------------------------------------------- |
+| title        | required                       | -                                                                                |
+| description  | required                       | -                                                                                |
+| favicon      | optional                       | -                                                                                |
+| logo         | optional                       | -                                                                                |
+| npub         | required                       | your public key                                                                  |
+| themes       | at least one OR `customThemes` | built-in themes                                                                  |
+| customThemes | at least one OR `themes`       | custom themes can be generated from [here](https://daisyui.com/theme-generator/) |
+| relays       | at least one                   | -                                                                                |
+
 <!-- ROADMAP -->
 
 ## Roadmap
 
 - [x] Implement settings page
-- [ ] Implement write page
+- [x] Implement write page
+  - [ ] Implement publish button
 - [ ] Implement loading ui
 - [ ] Implement lightning tips
 
