@@ -60,6 +60,9 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
+    <li>
+      <a href="#configuration">Configuration</a>
+    </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
