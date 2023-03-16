@@ -25,6 +25,8 @@ const Relays = () => {
     }
   };
 
+  if (allRelays.length <= 1) return null;
+
   return (
     <div className="dropdown dropdown-end" title="Relays">
       <div className="btn gap-2 normal-case btn-ghost flex-nowrap" tabIndex={0}>

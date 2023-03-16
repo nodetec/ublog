@@ -2,19 +2,24 @@
 import { FC, useEffect, useState } from "react";
 import { Check, Themes as ThemesIcon } from "@/app/icons";
 import ChevronDown from "@/app/icons/ChevronDown";
-import { themes } from "@/ublog.config";
+import { themes, customThemes } from "@/ublog.config";
+
+customThemes.map((theme) => console.log(Object.keys(theme)));
+const allThemes = themes.concat(
+  ...customThemes.map((theme) => Object.keys(theme))
+);
 
 interface ThemesProps {}
 
 const Themes: FC<ThemesProps> = ({}) => {
-  const [active, setActive] = useState(themes[0]);
+  const [active, setActive] = useState(allThemes[0]);
 
   useEffect(() => {
     const stored = localStorage.getItem("_theme");
     if (!!stored) {
       setActive(JSON.parse(stored));
     } else {
-      setActive(themes[0]);
+      setActive(allThemes[0]);
     }
   }, []);
 
@@ -27,7 +32,7 @@ const Themes: FC<ThemesProps> = ({}) => {
     document.documentElement.setAttribute("data-theme", active);
   }, [active]);
 
-  if (themes.length <= 1) return null;
+  if (allThemes.length <= 1) return null;
 
   return (
     <div className="dropdown dropdown-end" title="Change Theme">
@@ -37,7 +42,7 @@ const Themes: FC<ThemesProps> = ({}) => {
       </div>
       <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 w-52 overflow-y-auto shadow-2xl mt-16">
         <div className="grid grid-cols-1 gap-3 p-3" tabIndex={0}>
-          {themes.map((theme, i) => (
+          {allThemes.map((theme, i) => (
             <button
               key={i}
               className="outline-base-content overflow-hidden rounded-lg text-left [&_svg]:visible"

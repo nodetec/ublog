@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { themes } = require("./ublog.config");
+const { themes, customThemes } = require("./ublog.config");
 
 module.exports = {
   content: [
@@ -27,6 +27,6 @@ module.exports = {
     rtl: false,
     prefix: "",
     darkTheme: "dark",
-    themes,
+    themes: [...themes, ...customThemes],
   },
 };
