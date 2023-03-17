@@ -3,6 +3,7 @@ import { title, description, favicon } from "@/ublog.config";
 import Header from "@/app/components/Header/";
 import Providers from "@/app/context/providers";
 import Toast from "./components/Header/Toast";
+import Footer from "./components/Footer";
 
 export const metadata = {
   title,
@@ -22,6 +23,7 @@ export default function RootLayout({
           <main className="container">
             <Header />
             {children}
+            <Footer />
             <Toast />
           </main>
         </Providers>
