@@ -61,6 +61,8 @@ const UserBox: FC<UserBoxProps> = ({ npub }) => {
   }, [reload, relayUrl]);
   const { name, lud16, nip05, about, picture, banner } = profile;
 
+  if (Object.values(profile).every((value) => value === "")) return null;
+
   return (
     <div className="rounded-box overflow-hidden my-4">
       {banner ? (
@@ -75,11 +77,13 @@ const UserBox: FC<UserBoxProps> = ({ npub }) => {
           banner ? "-translate-y-8" : "py-6"
         }`}
       >
-        <img
-          className="w-24 h-24 min-w-[6rem] rounded-full border-4 border-base-100"
-          src={picture}
-          alt=""
-        />
+        {picture ? (
+          <img
+            className="w-24 h-24 min-w-[6rem] rounded-full border-4 border-base-100"
+            src={picture}
+            alt=""
+          />
+        ) : null}
         <div
           className={`text-center md:text-start flex flex-col gap-2 items-center md:items-start ${
             banner ? "md:mt-10" : ""

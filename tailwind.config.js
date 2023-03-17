@@ -16,6 +16,13 @@ module.exports = {
           lg: "768px",
         },
       },
+      keyframes: {
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+      },
     },
   },
   plugins: [require("daisyui"), require("@tailwindcss/typography")],

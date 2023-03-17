@@ -119,8 +119,9 @@ All the configuration found in `ublog.config.js`:
 - [x] Implement settings page
 - [x] Implement write page
   - [ ] Implement publish button
-- [ ] Implement loading ui
+- [x] Implement loading ui
 - [ ] Implement lightning tips
+- [ ] Implement tags
 
 See the [open issues](https://github.com/nodetec/ublog/issues) for a full list of proposed features (and known issues).
 
