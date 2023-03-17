@@ -11,3 +11,4 @@ export { default as LightningCharge } from "./LightningCharge";
 export { default as User } from "./User";
 export { default as Relays } from "./Relays";
 export { default as Heart } from "./Heart";
+export { default as ChevronUp } from "./ChevronUp";
