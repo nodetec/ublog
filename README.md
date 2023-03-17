@@ -99,18 +99,22 @@ WIP
 
 ## Configuration
 
-All the configuration found in `ublog.config.js`:
+The [`ublog.config.js`](https://github.com/nodetec/ublog/blob/master/ublog.config.js) file contains the configuration settings for this project
 
-| Option       | Usage                          | Description                                                                      |
-| ------------ | ------------------------------ | -------------------------------------------------------------------------------- |
-| title        | required                       | -                                                                                |
-| description  | required                       | -                                                                                |
-| favicon      | optional                       | -                                                                                |
-| logo         | optional                       | -                                                                                |
-| npub         | required                       | your public key                                                                  |
-| themes       | at least one OR `customThemes` | built-in themes                                                                  |
-| customThemes | at least one OR `themes`       | custom themes can be generated from [here](https://daisyui.com/theme-generator/) |
-| relays       | at least one                   | -                                                                                |
+| Option         | Description                                                                                                   | Required/Optional |
+| -------------- | ------------------------------------------------------------------------------------------------------------- | ----------------- |
+| `title`        | The title of your blog.                                                                                       | Required          |
+| `description`  | A brief description of your blog.                                                                             | Required          |
+| `favicon`      | The URL of the favicon image for your blog.                                                                   | Optional          |
+| `logo`         | The URL of the logo image for your blog.                                                                      | Optional          |
+| `npub`         | Your own public key for your blog.                                                                            | Required          |
+| `themes`       | An array of built-in themes. Choose your favorite themes.                                                     | Required          |
+| `customThemes` | An array of custom themes. You can generate your own theme from [here](https://daisyui.com/theme-generator/). | Required          |
+| `relays`       | An array of relays.                                                                                           | Required          |
+
+Note:
+
+- At least one value is required between `themes` and `customThemes`.
 
 <!-- ROADMAP -->
 
