@@ -1,15 +1,15 @@
 "use client";
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useId, useRef, useState } from "react";
 import { KeysContext } from "@/app/context/keys-context";
-import { X } from "@/app/icons";
 import Account from "./Account";
 import { ToastContext } from "@/app/context/toast-context";
+import Popup from "@/app/components/Popup";
 
 const Login = () => {
   const { keys, setKeys } = useContext(KeysContext);
   const [isLightningConnected, setIsLightningConnected] = useState(false);
-  const modalRef = useRef<HTMLInputElement>(null);
   const { createToast } = useContext(ToastContext);
+  const popupId = useId();
 
   useEffect(() => {
     const shouldReconnect = localStorage.getItem("shouldReconnect");
@@ -65,73 +65,57 @@ const Login = () => {
       // @ts-ignore
       await window.webln.enable();
     }
-    console.log("connected ");
+    console.log("connected");
     createToast({ message: "connected", type: "success" });
     setIsLightningConnected(true);
-    modalRef.current?.click();
   };
 
   return (
-    <Fragment>
+    <>
       {isLightningConnected && keys?.publicKey ? (
         <Account pubkey={keys.publicKey} />
       ) : (
-        <Fragment>
-          <label htmlFor="my-modal" className="btn btn-outline">
+        <>
+          <label htmlFor={popupId} className="btn btn-outline">
             login
           </label>
-          <input
-            type="checkbox"
-            ref={modalRef}
-            id="my-modal"
-            className="modal-toggle"
-          />
-          <label htmlFor="my-modal" className="modal cursor-pointer">
-            <label className="modal-box relative" htmlFor="">
-              <label
-                htmlFor="my-modal"
-                className="btn btn-ghost btn-sm btn-circle absolute right-2 top-2"
-              >
-                <X size="14" />
-              </label>
-              <h3 className="text-xl font-bold mb-4">Login</h3>
-              {typeof window !== "undefined" &&
-              // @ts-ignore
-              typeof window.nostr === "undefined" ? (
-                <Fragment>
-                  <p className="py-4">
-                    Install Alby Extension and setup keys to Login
-                  </p>
-                  <a
-                    href="https://getalby.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-active btn-block"
-                  >
-                    Get Alby Extension
-                  </a>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://guides.getalby.com/overall-guide/alby-browser-extension/features/nostr"
-                    className="link link-neutral text-center block mt-2 font-bold text-sm"
-                  >
-                    Learn more
-                  </a>
-                </Fragment>
-              ) : (
-                <button
-                  className="btn btn-outline btn-block"
-                  onClick={loginHandler}
+          <Popup id={popupId} title="Login">
+            {typeof window !== "undefined" &&
+            // @ts-ignore
+            typeof window.nostr === "undefined" ? (
+              <>
+                <p className="py-4">
+                  Install Alby Extension and setup keys to Login
+                </p>
+                <a
+                  href="https://getalby.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-active btn-block"
                 >
-                  {isLightningConnected ? "Connected" : "Login with Extension"}
-                </button>
-              )}
-            </label>
-          </label>
-        </Fragment>
+                  Get Alby Extension
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://guides.getalby.com/overall-guide/alby-browser-extension/features/nostr"
+                  className="link link-neutral text-center block mt-2 font-bold text-sm"
+                >
+                  Learn more
+                </a>
+              </>
+            ) : (
+              <button
+                className="btn btn-outline btn-block"
+                onClick={loginHandler}
+              >
+                {isLightningConnected ? "Connected" : "Login with Extension"}
+              </button>
+            )}
+          </Popup>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
