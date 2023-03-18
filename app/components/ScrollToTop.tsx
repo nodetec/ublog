@@ -25,7 +25,7 @@ const ScrollToTop = () => {
 
   return (
     <button
-      className={`fixed right-4 btn btn-sm btn-circle btn-ghost btn-active transition-all bottom-4 ${
+      className={`fixed right-4 btn btn-sm btn-circle btn-active transition-all bottom-4 ${
         visible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
       onClick={() => window.scrollTo(0, 0)}

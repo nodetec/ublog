@@ -1,10 +1,10 @@
 import { X } from "@/app/icons";
-import { FC, useEffect, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 
 interface PopupProps {
   id: string;
   title: string;
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 const Popup: FC<PopupProps> = ({ id, title, children }) => {

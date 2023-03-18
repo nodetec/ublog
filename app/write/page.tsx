@@ -1,10 +1,11 @@
 "use client";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
-import { BlogContext } from "../context/blog-context";
+import { BlogContext } from "@/app/context/blog-context";
 import { useContext, useEffect } from "react";
 import "react-markdown-editor-lite/lib/index.css";
 import "@/app/styles/editor.css";
+import Publish from "@/app/components/Publish";
 
 const Write = () => {
   // @ts-ignore
@@ -40,21 +41,24 @@ const Write = () => {
   };
 
   return (
-    <div className="editor my-8 rounded-box border overflow-hidden">
-      <input
-        className="w-full p-4 text-lg font-bold focus:outline-none editor-title"
-        placeholder="Title..."
-        value={blog.title}
-        onChange={handleTitleChange}
-      />
-      <MdEditor
-        style={{ border: "none" }}
-        className="min-h-[50vh]"
-        value={blog.content}
-        renderHTML={(text) => setupMarkdown(text)}
-        onChange={handleContentChange}
-      />
-    </div>
+    <>
+      <div className="editor mt-8 mb-4 rounded-box border overflow-hidden">
+        <input
+          className="w-full p-4 text-lg font-bold focus:outline-none editor-title"
+          placeholder="Title..."
+          value={blog.title}
+          onChange={handleTitleChange}
+        />
+        <MdEditor
+          style={{ border: "none" }}
+          className="min-h-[50vh]"
+          value={blog.content}
+          renderHTML={(text) => setupMarkdown(text)}
+          onChange={handleContentChange}
+        />
+      </div>
+      <Publish />
+    </>
   );
 };
 

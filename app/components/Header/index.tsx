@@ -33,7 +33,7 @@ const Header: FC<HeaderProps> = () => {
   return (
     <nav
       className={`navbar bg-base-100 sticky z-30 top-0 transition-all ${
-        visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        visible ? "" : "-translate-y-full opacity-0"
       }`}
     >
       <div className="flex-1">
@@ -47,8 +47,8 @@ const Header: FC<HeaderProps> = () => {
         </Link>
       </div>
       <div className="flex items-center gap-2">
-        <Relays />
         <Write />
+        <Relays />
         <Themes />
         <Login />
       </div>

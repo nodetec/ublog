@@ -21,7 +21,7 @@ const Input: FC<InputProps> = ({ label, labelAlt, ...props }) => (
     />
     <label className="label">
       <span className="label-text-alt">{labelAlt}</span>
-    </label>{" "}
+    </label>
   </div>
 );
 
