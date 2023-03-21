@@ -34,10 +34,10 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Greek_lc_mu.svg" alt="Logo" width="100" height="100">
   </a>
 
-  <h3 align="center">µblog</h3>
+  <h3 align="center">µBlog</h3>
 
   <p align="center">
-    micro personal blog on nostr
+  uBlog is a minimalist blog on nostr that allows anyone to easily create their own personal micro-blog.
     <br />
     <br />
   </span>

@@ -1,10 +1,11 @@
 module.exports = {
-  title: "ublog",
-  description: "my personal blog on nostr",
+  title: "uBlog",
+  description:
+    "A minimalist blog on nostr that allows anyone to easily create their own personal micro-blog.",
   favicon:
     "https://upload.wikimedia.org/wikipedia/commons/0/0b/Greek_lc_mu.svg",
   logo: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Greek_lc_mu.svg",
-  npub: "npub1qd3hhtge6vhwapp85q8eg03gea7ftuf9um4r8x4lh4xfy2trgvksf6dkva",
+  npub: "npub1hk08saqjqxj0u98vjyeh8rd7n3828wh60wsf74nwkjexwlg22x6q4acuqq",
   themes: [
     "light",
     "dark",
