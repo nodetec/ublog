@@ -2,12 +2,13 @@ import { FC, useContext } from "react";
 import { KeysContext } from "@/app/context/keys-context";
 import WriteButton from "@/app/components/Header/Write";
 import { npub } from "@/ublog.config";
+import { nip19 } from "nostr-tools";
 
 interface NoBlogsProps {}
 
 const NoBlogs:FC<NoBlogsProps> = () => {
-  //@ts-ignore
   const { keys } = useContext(KeysContext);
+  const loggedInUserNpub = nip19.npubEncode(keys?.publicKey);
 
   return (
     <div className="py-4">
@@ -28,7 +29,7 @@ const NoBlogs:FC<NoBlogsProps> = () => {
         />
       </svg>
       <h2 className="text-center">No blogs found</h2>
-      {npub && keys.publicKey && npub === keys.publicKey ? (
+      {npub && loggedInUserNpub && npub === loggedInUserNpub ? (
         <div className="flex justify-center items-center gap-4 text-gray mt-4">
           <span>click</span>
           <WriteButton />
