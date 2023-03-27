@@ -1,12 +1,11 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { KeysContext } from "@/app/context/keys-context";
 import WriteButton from "@/app/components/Header/Write";
+import { npub } from "@/ublog.config";
 
-interface NoBlogsProps {
-  profilePublicKey?: string;
-}
+interface NoBlogsProps {}
 
-const NoBlogs = ({ profilePublicKey }: NoBlogsProps) => {
+const NoBlogs:FC<NoBlogsProps> = () => {
   //@ts-ignore
   const { keys } = useContext(KeysContext);
 
@@ -29,9 +28,7 @@ const NoBlogs = ({ profilePublicKey }: NoBlogsProps) => {
         />
       </svg>
       <h2 className="text-center">No blogs found</h2>
-      {profilePublicKey &&
-        keys.publicKey &&
-        profilePublicKey === keys.publicKey ? (
+      {npub && keys.publicKey && npub === keys.publicKey ? (
         <div className="flex justify-center items-center gap-4 text-gray mt-4">
           <span>click</span>
           <WriteButton />
