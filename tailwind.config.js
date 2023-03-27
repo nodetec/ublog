@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const { themes, customThemes } = require("./ublog.config");
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
@@ -8,6 +9,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["var(--font-lato)", "Roboto", "sans-serif", ...fontFamily.sans],
+    },
     extend: {
       container: {
         center: true,
