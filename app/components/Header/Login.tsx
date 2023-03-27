@@ -99,7 +99,7 @@ const Login = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://guides.getalby.com/overall-guide/alby-browser-extension/features/nostr"
-                  className="link link-neutral text-center block mt-2 font-bold text-sm"
+                  className="link text-center block mt-2 font-bold text-sm"
                 >
                   Learn more
                 </a>
