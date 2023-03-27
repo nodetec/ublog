@@ -122,7 +122,7 @@ Note:
 
 - [x] Implement settings page
 - [x] Implement write page
-  - [ ] Implement publish button
+  - [x] Implement publish button
 - [x] Implement loading ui
 - [ ] Implement lightning tips
 - [ ] Implement tags
