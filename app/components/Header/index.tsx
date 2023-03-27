@@ -39,7 +39,7 @@ const Header: FC<HeaderProps> = () => {
       <div className="flex-1">
         <Link href="/" className="font-bold text-xl flex gap-2">
           {logo ? (
-            <div className="w-8 rounded-full bg-white">
+            <div className="w-8">
               <img src={logo} alt="" />
             </div>
           ) : null}

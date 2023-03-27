@@ -4,7 +4,9 @@ import { Check, Themes as ThemesIcon } from "@/app/icons";
 import ChevronDown from "@/app/icons/ChevronDown";
 import { themes, customThemes } from "@/ublog.config";
 
-const allThemes = themes.concat(
+const themesWithType: string[] = themes;
+
+const allThemes = themesWithType.concat(
   ...customThemes.map((theme) => Object.keys(theme))
 );
 
