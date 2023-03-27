@@ -10,8 +10,7 @@ import { BlogContext } from "@/app/context/blog-context";
 import { useRouter } from "next/navigation";
 
 const Publish = () => {
-  const publishId = useId();
-  const statusId = useId();
+  const popupId = useId();
   const router = useRouter();
 
   const { keys } = useContext(KeysContext);
@@ -204,87 +203,95 @@ const Publish = () => {
 
   return (
     <div className="sticky bottom-2 z-30">
-      <label htmlFor={publishId} className="btn btn-primary">
+      <label htmlFor={popupId} className="btn btn-primary">
         Publish
       </label>
+      <Popup id={popupId} title={isRelayStatusOpen ? "Status" : "Publish"}>
+        {isRelayStatusOpen ? (
+          <>
+            {publishSuccess.length > 0 && (
+              <div className="py-4">
+                <h4 className="text-lg font-semibold pb-4">
+                  Successful published to:
+                </h4>
+                <ul className="flex flex-col gap-2">
+                  {publishSuccess.map((relay: string) => {
+                    return (
+                      <li key={relay}>✅ {relay.replace("wss://", "")}</li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+            {publishFailed.length > 0 && (
+              <div className="py-4">
+                <h4 className="text-lg font-semibold pb-4">
+                  Failed to publish:
+                </h4>
+                <ul className="flex flex-col gap-2">
+                  {publishFailed.map((relay: string) => {
+                    return (
+                      <li key={relay}>❌ {relay.replace("wss://", "")}</li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
 
-      {isRelayStatusOpen ? (
-        <Popup id={statusId} title="Status">
-          {publishSuccess.length > 0 && (
-            <div className="py-4">
-              <h4 className="text-lg font-semibold pb-4">
-                Successful published to:
-              </h4>
-              <ul className="flex flex-col gap-2">
-                {publishSuccess.map((relay: string) => {
-                  return <li key={relay}>✅ {relay.replace("wss://", "")}</li>;
-                })}
-              </ul>
-            </div>
-          )}
-          {publishFailed.length > 0 && (
-            <div className="py-4">
-              <h4 className="text-lg font-semibold pb-4">Failed to publish:</h4>
-              <ul className="flex flex-col gap-2">
-                {publishFailed.map((relay: string) => {
-                  return <li key={relay}>❌ {relay.replace("wss://", "")}</li>;
-                })}
-              </ul>
-            </div>
-          )}
+            <button className="btn w-full" onClick={handleDismiss}>
+              Dismiss
+            </button>
+          </>
+        ) : (
+          <>
+            <ul className="steps w-full mb-6">
+              {STEPS.map((step, idx) => (
+                <li
+                  key={idx}
+                  className={`step ${idx <= activeStepIdx ? "step-primary" : ""
+                    }`}
+                >
+                  {Object.keys(step)[0]}
+                </li>
+              ))}
+            </ul>
+            {Object.values(STEPS[activeStepIdx])[0]}
 
-          <button className="btn w-full" onClick={handleDismiss}>
-            Dismiss
-          </button>
-        </Popup>
-      ) : (
-        <Popup id={publishId} title="Publish">
-          <ul className="steps w-full mb-6">
-            {STEPS.map((step, idx) => (
-              <li
-                key={idx}
-                className={`step ${idx <= activeStepIdx ? "step-primary" : ""}`}
-              >
-                {Object.keys(step)[0]}
-              </li>
-            ))}
-          </ul>
-          {Object.values(STEPS[activeStepIdx])[0]}
-
-          <div className="flex items-center justify-between gap-4 mt-6">
-            {activeStepIdx > 0 ? (
-              <button
-                className="btn"
-                onClick={() =>
-                  setActiveStepIdx((currentState) => currentState - 1)
-                }
-              >
-                Back
-              </button>
-            ) : null}
-            {activeStepIdx === STEPS.length - 1 ? (
-              <button
-                className={`btn btn-primary ml-auto ${isPublishing ? "loading" : ""
-                  }`}
-                onClick={submitPublish}
-              >
-                {isPublishing ? "Publishing" : "Publish"}
-              </button>
-            ) : (
-              activeStepIdx < STEPS.length - 1 && (
+            <div className="flex items-center justify-between gap-4 mt-6">
+              {activeStepIdx > 0 ? (
                 <button
-                  className="btn btn-primary ml-auto"
+                  className="btn"
                   onClick={() =>
-                    setActiveStepIdx((currentState) => currentState + 1)
+                    setActiveStepIdx((currentState) => currentState - 1)
                   }
                 >
-                  Next
+                  Back
                 </button>
-              )
-            )}
-          </div>
-        </Popup>
-      )}
+              ) : null}
+              {activeStepIdx === STEPS.length - 1 ? (
+                <button
+                  className={`btn btn-primary ml-auto ${isPublishing ? "loading" : ""
+                    }`}
+                  onClick={submitPublish}
+                >
+                  {isPublishing ? "Publishing" : "Publish"}
+                </button>
+              ) : (
+                activeStepIdx < STEPS.length - 1 && (
+                  <button
+                    className="btn btn-primary ml-auto"
+                    onClick={() =>
+                      setActiveStepIdx((currentState) => currentState + 1)
+                    }
+                  >
+                    Next
+                  </button>
+                )
+              )}
+            </div>
+          </>
+        )}
+      </Popup>
     </div>
   );
 };
