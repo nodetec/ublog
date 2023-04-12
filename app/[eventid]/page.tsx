@@ -3,9 +3,9 @@ import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { Event } from "nostr-tools";
 import { nip19 } from "nostr-tools";
-import { RelayContext } from "../context/relay-context";
-import { CachedEventContext } from "../context/cached-event-context";
-import { ProfilesContext } from "../context/profiles-context";
+import { RelayContext } from "@/app/context/relay-context";
+import { CachedEventContext } from "@/app/context/cached-event-context";
+import { ProfilesContext } from "@/app/context/profiles-context";
 import Blog from "./Blog";
 
 const BlogPage = () => {
