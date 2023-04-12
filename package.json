@@ -1,7 +1,23 @@
 {
-  "name": "ublog",
-  "version": "0.1.0",
+  "name": "u-blog-nostr",
+  "version": "1.0.3",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodetec/ublog.git"
+  },
+  "author": "MAHcodes",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nodetec/ublog/issues"
+  },
+  "keywords": [
+    "nostr",
+    "blog",
+    "nextjs",
+    "template"
+  ],
+  "homepage": "https://github.com/nodetec/ublog#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -26,6 +42,7 @@
     "react-markdown-editor-lite": "^1.3.4",
     "react-nocomment": "^0.3.0",
     "typescript": "4.9.5",
+    "u-blog-nostr": "^1.0.0",
     "websocket-polyfill": "^0.0.3"
   },
   "devDependencies": {
