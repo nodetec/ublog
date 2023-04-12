@@ -2,7 +2,7 @@ import { FC, useContext } from "react";
 import { Event, nip19 } from "nostr-tools";
 import { getTagValues } from "@/app/lib/utils";
 import { CachedEventContext } from "@/app/context/cached-event-context";
-import { AddressPointer } from "nostr-tools/nip19";
+import { AddressPointer } from "nostr-tools/lib/nip19";
 import { RelayContext } from "@/app/context/relay-context";
 import { useRouter } from "next/navigation";
 
