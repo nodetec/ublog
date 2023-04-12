@@ -55,9 +55,13 @@ const Article: FC<ArticleProps> = ({ event }) => {
         {title ? <h2 className="card-title">{title}</h2> : null}
         {summary ? (
           <p>
-            {summary.length > SUMMARY_PREVIEW_LENGTH
-              ? summary.slice(0, SUMMARY_PREVIEW_LENGTH) + "..."
-              : summary}
+            {summary
+              ? summary.length > SUMMARY_PREVIEW_LENGTH
+                ? summary.slice(0, SUMMARY_PREVIEW_LENGTH) + "..."
+                : summary
+              : content.length > SUMMARY_PREVIEW_LENGTH
+                ? content.slice(0, SUMMARY_PREVIEW_LENGTH) + "..."
+                : content}
           </p>
         ) : null}
       </div>

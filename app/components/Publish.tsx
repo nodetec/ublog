@@ -155,7 +155,7 @@ const Publish = () => {
     const { title, content } = blog;
 
     const tags = [
-      ["client", "ublog"],
+      ["client", "u-blog.vercel.app"],
       ["title", title],
     ];
 
