@@ -33,7 +33,7 @@ const BlogPage = () => {
     const filter = {
       kinds: [naddr.kind],
       authors: [naddr.pubkey],
-      "#d": [naddr.identifier],
+      "#d": naddr.identifier,
     };
 
     let events: Event[] = [];
