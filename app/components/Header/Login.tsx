@@ -17,26 +17,21 @@ const Login = () => {
     const getConnected = async (shouldReconnect: string) => {
       let enabled = false;
 
-      // @ts-ignore
       if (typeof window.nostr === "undefined") {
         return;
       }
 
       if (shouldReconnect === "true") {
-        // @ts-ignore
         const publicKey = await nostr.getPublicKey();
         setKeys((keys) => ({ ...keys, publicKey }));
       }
 
-      // @ts-ignore
       if (typeof window.webln === "undefined") {
         return;
       }
 
-      // @ts-ignore
       if (shouldReconnect === "true" && !webln.executing) {
         try {
-          // @ts-ignore
           enabled = await window.webln.enable();
           setIsLightningConnected(true);
         } catch (e: any) {
@@ -52,17 +47,13 @@ const Login = () => {
   }, [setKeys]);
 
   const loginHandler = async () => {
-    // @ts-ignore
     if (typeof window.nostr !== "undefined") {
-      // @ts-ignore
       const publicKey = await nostr.getPublicKey();
       setKeys((keys) => ({ ...keys, publicKey }));
       localStorage.setItem("shouldReconnect", "true");
     }
 
-    // @ts-ignore
     if (typeof window.webln !== "undefined") {
-      // @ts-ignore
       await window.webln.enable();
     }
     console.log("connected");
@@ -81,7 +72,6 @@ const Login = () => {
           </label>
           <Popup id={popupId} title="Login">
             {typeof window !== "undefined" &&
-            // @ts-ignore
             typeof window.nostr === "undefined" ? (
               <>
                 <p className="py-4">
