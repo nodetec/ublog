@@ -36,7 +36,7 @@ const LNTips = () => {
   const content = JSON.parse(profile.content);
   const lud06 = content.lud06;
   const lud16 = content.lud16;
-  if (!(lud06 || lud16)) return;
+  if (!lud06 && !lud16) return;
 
   const handleSendTip = async () => {
     if (typeof window.webln !== "undefined") {
