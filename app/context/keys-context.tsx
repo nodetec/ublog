@@ -8,12 +8,17 @@ import {
   useState,
 } from "react";
 
+const defualtKeys = {
+  privateKey: "",
+  publicKey: "",
+};
+
 export const KeysContext = createContext<{
   keys: { privateKey: string; publicKey: string };
   setKeys: Dispatch<SetStateAction<{ privateKey: string; publicKey: string }>>;
 }>({
   keys: { privateKey: "", publicKey: "" },
-  setKeys: () => { },
+  setKeys: () => defualtKeys,
 });
 
 interface KeysProviderProps {
@@ -21,10 +26,7 @@ interface KeysProviderProps {
 }
 
 const KeysProvider = ({ children }: KeysProviderProps) => {
-  const [keys, setKeys] = useState({
-    privateKey: "",
-    publicKey: "",
-  });
+  const [keys, setKeys] = useState(defualtKeys);
 
   return (
     <KeysContext.Provider value={{ keys, setKeys }}>

@@ -2,7 +2,7 @@ import { ProfilesContext } from "@/app/context/profiles-context";
 import { RelayContext } from "@/app/context/relay-context";
 import { npub } from "@/ublog.config";
 import { nip19 } from "nostr-tools";
-import { useContext, useId, useState } from "react";
+import { useContext, useId, useRef, useState } from "react";
 import { requestInvoice } from "lnurl-pay";
 import { LightningCharge } from "@/app/icons";
 import Popup from "../Popup";
@@ -27,6 +27,7 @@ const LNTips = () => {
     useState<Satoshis>(defaultTipAmount);
   const [tipMessage, setTipMessage] = useState<string>();
   const { createToast } = useContext(ToastContext);
+  const tipButtonRef = useRef<HTMLLabelElement | null>(null);
 
   const profilePubkey = nip19.decode(npub).data.toString();
   let relayName = relayUrl.replace("wss://", "");
@@ -53,11 +54,12 @@ const LNTips = () => {
         });
       try {
         const result = await webln.sendPayment(invoice);
-        console.log("payment hash: ", result.paymentHash);
+        console.log("payment hash:", result.paymentHash);
         createToast({
           message: `Payment Hash: ${result.paymentHash}`,
           type: "success",
         });
+        tipButtonRef.current?.click();
       } catch (e) {
         console.log("Tip Error:", e);
         createToast({
@@ -72,6 +74,7 @@ const LNTips = () => {
     <>
       <label
         htmlFor={popupId}
+        ref={tipButtonRef}
         className="btn btn-warning gap-2"
         onClick={() => {
           setTipMessage("");
