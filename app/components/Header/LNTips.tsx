@@ -32,11 +32,11 @@ const LNTips = () => {
   let relayName = relayUrl.replace("wss://", "");
   const profileKey = `profile_${relayName}_${profilePubkey}`;
   const profile = profiles[profileKey];
-  if (!profile) return;
+  if (!profile) return null;
   const content = JSON.parse(profile.content);
   const lud06 = content.lud06;
   const lud16 = content.lud16;
-  if (!lud06 && !lud16) return;
+  if (!lud06 && !lud16) return null;
 
   const handleSendTip = async () => {
     if (typeof window.webln !== "undefined") {
@@ -113,7 +113,10 @@ const LNTips = () => {
           className="focus:input-warning"
           onChange={(e) => setTipMessage(e.target.value)}
         />
-        <button className="btn btn-warning btn-block gap-2 flex-1" onClick={handleSendTip}>
+        <button
+          className="btn btn-warning btn-block gap-2 flex-1"
+          onClick={handleSendTip}
+        >
           <LightningCharge />
           <span>Send</span>
         </button>
