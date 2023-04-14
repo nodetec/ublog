@@ -55,6 +55,7 @@ const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     connect(relayUrl);
+    // eslint-disable-next-line
   }, [relayUrl]);
 
   useEffect(() => {
@@ -125,7 +126,7 @@ const RelayProvider: React.FC<{ children: React.ReactNode }> = ({
   const publish = async (
     relays: string[],
     event: any,
-    onOk: () => void,
+    // onOk: () => void,
     onSeen: (url: string) => void,
     onFailed: (url: string) => void
   ) => {

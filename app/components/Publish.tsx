@@ -43,6 +43,7 @@ const Publish = () => {
       });
       setIsPublishing(false);
     };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -63,6 +64,7 @@ const Publish = () => {
       }
     }
     // console.log("PUBLISH COUNT:", publishCount);
+    // eslint-disable-next-line
   }, [publishSuccess, publishFailed]);
 
   const toggleRelay = (e: any) => {
@@ -195,6 +197,7 @@ const Publish = () => {
     if (publishCount >= toggledRelays.length) {
       setIsRelayStatusOpen(true);
     }
+    // eslint-disable-next-line
   }, [publishCount]);
 
   const handleDismiss = () => {
