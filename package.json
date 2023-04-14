@@ -41,6 +41,7 @@
     "react-dom": "18.2.0",
     "react-markdown-editor-lite": "^1.3.4",
     "react-nocomment": "^0.3.0",
+    "tailwind-merge": "^1.12.0",
     "typescript": "4.9.5",
     "u-blog-nostr": "^1.0.0",
     "websocket-polyfill": "^0.0.3"

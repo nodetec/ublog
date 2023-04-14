@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import { DetailedHTMLProps, FC, InputHTMLAttributes } from "react";
 
 interface InputProps
@@ -7,16 +8,26 @@ interface InputProps
   > {
   label?: string;
   labelAlt?: string;
+  type?: string;
 }
 
-const Input: FC<InputProps> = ({ label, labelAlt, ...props }) => (
+const Input: FC<InputProps> = ({
+  label,
+  labelAlt,
+  type = "text",
+  className,
+  ...props
+}) => (
   <div className="form-control w-full">
     <label className="label">
       <span className="label-text">{label}</span>
     </label>
     <input
-      type="text"
-      className="input input-bordered focus:input-primary w-full"
+      type={type}
+      className={twMerge(
+        `input input-bordered focus:input-primary w-full`,
+        className
+      )}
       {...props}
     />
     <label className="label">

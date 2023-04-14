@@ -124,8 +124,8 @@ Note:
 - [x] Implement write page
   - [x] Implement publish button
 - [x] Implement loading ui
-- [ ] Implement lightning tips
-- [ ] Implement tags
+- [x] Implement lightning tips
+- [x] Implement tags
 
 See the [open issues](https://github.com/nodetec/ublog/issues) for a full list of proposed features (and known issues).
 

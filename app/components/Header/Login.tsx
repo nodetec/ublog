@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useId, useRef, useState } from "react";
+import { useContext, useEffect, useId, useState } from "react";
 import { KeysContext } from "@/app/context/keys-context";
 import Account from "./Account";
 import { ToastContext } from "@/app/context/toast-context";
