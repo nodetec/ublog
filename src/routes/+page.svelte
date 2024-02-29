@@ -26,7 +26,6 @@
           <div class="HomeBodySideSec">
             <Search />
           </div>
-
           <div class="HomeBodySideSec">
             <ShortPostsRight />
           </div>
