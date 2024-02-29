@@ -43,9 +43,9 @@
 
 .HBLCL_CommentBottom {
   padding: 20px;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   background: linear-gradient(to top right, #262626, #292929, #262626);
-  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.1);
   border-radius: 10px;
   /*border: solid 1px rgba(255,255,255,0.1);*/
 }
@@ -55,7 +55,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.1);
 }
 
 .HBLCL_CBText {
@@ -85,7 +85,7 @@
   grid-gap: 10px;
   padding: 5px 15px;
   border-radius: 10px;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   font-weight: bold;
   position: relative;
   cursor: pointer;
@@ -105,7 +105,7 @@
   transition: ease 0.4s;
   background: linear-gradient(to top right, #262626, #292929, #262626);
   opacity: 0;
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -113,27 +113,27 @@
   left: 0;
   z-index: -1;
   border-radius: 10px;
-  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.1);
 }
 
 .HBLCL_CAElementText {
 }
 
 .HBLCL_CAElementIcon {
-  background: rgba(255,255,255,0);
+  background: rgba(255, 255, 255, 0);
   font-size: 14px;
 }
 
 .HBLCL_CTD_Name {
   font-weight: bold;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .HBLCL_CTD_Address {
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -141,33 +141,33 @@
 }
 
 .HBLCL_CAElement.HBLCL_CAEReply {
-  border: solid 1px rgba(255,255,255,0.05);
+  border: solid 1px rgba(255, 255, 255, 0.05);
 }
 
 .HBLCL_CAElement.HBLCL_CAEReply:hover {
   transition: ease 0.4s;
-  border: solid 1px rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.5);
+  border: solid 1px rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .HBLCL_CAElement.HBLCL_CAEReplies:hover {
   transition: ease 0.4s;
-  color: rgba(173,90,255,0.75);
+  color: rgba(173, 90, 255, 0.75);
 }
 
 .HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEDown:hover {
   transition: ease 0.4s;
-  color: rgba(255,114,54,0.85);
+  color: rgba(255, 114, 54, 0.85);
 }
 
 .HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEUp:hover {
   transition: ease 0.4s;
-  color: rgba(255,70,70,0.85);
+  color: rgba(255, 70, 70, 0.85);
 }
 
 .HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEBolt:hover {
   transition: ease 0.4s;
-  color: rgba(255,255,0,0.85);
+  color: rgba(255, 255, 0, 0.85);
 }
 
 .HBLCL_CAElement:hover {
@@ -181,19 +181,19 @@
 }
 
 .HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEUp.HBLCL_CAEUpActive {
-  color: rgba(255,70,70,0.85);
+  color: rgba(255, 70, 70, 0.85);
 }
 
 .HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEDown.HBLCL_CAEDownActive {
-  color: rgba(255,114,54,0.85);
+  color: rgba(255, 114, 54, 0.85);
 }
 
 .HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEBolt.HBLCL_CAEBoltActive {
-  color: rgba(255,255,0,0.85);
+  color: rgba(255, 255, 0, 0.85);
 }
 
 .HBLCL_CAElement.HBLCL_CAEReplies.HBLCL_CAERepliesActive {
-  color: rgba(173,90,255,0.75);
+  color: rgba(173, 90, 255, 0.75);
 }
 
 .HBLCL_CommentActionsInside {
@@ -205,7 +205,7 @@
 }
 
 .HBLCL_CommentActionsDetails {
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   font-size: 16px;
   display: flex;
   flex-direction: row;
@@ -237,7 +237,7 @@
 }
 
 .HBLCC_Top {
-  display:flex;
+  display: flex;
 }
 
 .HBLCC_Bottom {
@@ -248,19 +248,22 @@
 }
 
 .HBLCC_Top_Box {
-  transition: border, background, box-shadow ease 0.4s;
+  transition:
+    border,
+    background,
+    box-shadow ease 0.4s;
   width: 100%;
-  background: rgba(0,0,0,0.05);
-  border: solid 1px rgba(255,255,255,0.05);
-  box-shadow: inset 0 0 8px 0 rgb(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.05);
+  border: solid 1px rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 8px 0 rgb(0, 0, 0, 0.1);
   border-radius: 10px;
   min-height: 50px;
   height: 150px;
   min-width: 100%;
   outline: unset;
   padding: 15px 20px;
-  color: rgba(255,255,255,0.75);
-  flex-grow:1;
+  color: rgba(255, 255, 255, 0.75);
+  flex-grow: 1;
   resize: vertical;
 }
 
@@ -271,35 +274,39 @@
   }
 }
 
-.HBLCC_Top_Box:focus, hover {
-  transition: border, background, box-shadow ease 0.4s;
-  background: rgba(0,0,0,0.1);
-  border: solid 1px rgba(255,255,255,0.1);
-  box-shadow: inset 0 0 8px 0 rgb(0,0,0,0.15);
+.HBLCC_Top_Box:focus,
+hover {
+  transition:
+    border,
+    background,
+    box-shadow ease 0.4s;
+  background: rgba(0, 0, 0, 0.1);
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 8px 0 rgb(0, 0, 0, 0.15);
   outline: unset;
 }
 
 .HBLCC_BottomButton {
   transition: ease 0.4s;
   text-decoration: unset;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,0);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0);
   font-size: 16px;
   transform: scale(1);
   position: relative;
   cursor: pointer;
-  border: solid 1px rgba(255,255,255,0.1);
+  border: solid 1px rgba(255, 255, 255, 0.1);
 }
 
 .HBLCC_BottomButton:hover {
   transition: ease 0.4s;
   text-decoration: unset;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
-  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.1);
   font-size: 16px;
   transform: scale(1.03);
   /*border: solid 1px rgba(255,255,255,0);*/
@@ -314,7 +321,7 @@
   transition: ease 0.4s;
   background: linear-gradient(to top right, #262626, #292929, #262626);
   opacity: 0;
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -339,7 +346,7 @@
   padding: 25px;
   font-size: 24px;
   /*font-weight: bold;*/
-  color: rgba(255,255,255,0.15);
+  color: rgba(255, 255, 255, 0.15);
 }
 
 .pUMCB_PrimeComment {
@@ -356,7 +363,7 @@
   grid-gap: 25px;
   display: flex;
   flex-direction: column;
-  border: solid 1px rgba(255,255,255,0.1);
+  border: solid 1px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   min-height: 200px;
 }
@@ -383,9 +390,9 @@
   display: flex;
   flex-direction: row;
   border-radius: 10px;
-  border: solid 1px rgba(255,255,255,0.1);
+  border: solid 1px rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   font-size: 14px;
 }
 
@@ -396,14 +403,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .HBLCL_CTOLink:hover {
   transition: ease 0.4s;
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .HBLCL_CTOLink:active > .HBLCL_CTOLinkIcon {

@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: rgba(255,255,255,0.1);
+  color: rgba(255, 255, 255, 0.1);
 }
 
 .secMainFooterPara {
@@ -23,7 +23,7 @@
 
 .secMainFooterParaLink {
   transition: ease 0.4s;
-  color: rgba(255,255,255,0.1);
+  color: rgba(255, 255, 255, 0.1);
   text-decoration: unset;
   font-weight: bold;
   cursor: pointer;
@@ -31,7 +31,7 @@
 
 .secMainFooterParaLink:hover {
   transition: ease 0.4s;
-  color: rgba(173,90,255,0.75);
+  color: rgba(173, 90, 255, 0.75);
   text-decoration: unset;
   font-weight: bold;
 }
