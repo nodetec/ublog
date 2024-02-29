@@ -1,0 +1,424 @@
+.HomeBodyListComments {
+  width: 100%;
+  margin: 25px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 25px;
+}
+
+.HomeBodyListCommentsList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 25px;
+}
+
+.HBLCL_Comment {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.HBLCL_CommentTop {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  grid-gap: 15px;
+  padding: 0;
+}
+
+.HBLCL_CommentTopPP {
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+}
+
+.HBLCL_CommentTopDetails {
+  /*width: 100%;*/
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.HBLCL_CommentBottom {
+  padding: 20px;
+  color: rgba(255,255,255,0.75);
+  background: linear-gradient(to top right, #262626, #292929, #262626);
+  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  border-radius: 10px;
+  /*border: solid 1px rgba(255,255,255,0.1);*/
+}
+
+.HBLCL_CommentTopPPWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+}
+
+.HBLCL_CBText {
+}
+
+.HBLCL_CommentActions {
+  margin: -10px 0 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 25px;
+}
+
+@media (max-width: 768px) {
+  .HBLCL_CommentActions {
+    margin: -10px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
+  }
+}
+
+.HBLCL_CAElement {
+  transition: ease 0.4s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-gap: 10px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.25);
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  overflow: hidden;
+  transform: scale(1);
+  flex-wrap: wrap;
+}
+
+.HBLCL_CAElement:hover::before {
+  transition: ease 0.4s;
+  background: linear-gradient(to top right, #262626, #292929, #262626);
+  opacity: 1;
+}
+
+.HBLCL_CAElement::before {
+  transition: ease 0.4s;
+  background: linear-gradient(to top right, #262626, #292929, #262626);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+}
+
+.HBLCL_CAElementText {
+}
+
+.HBLCL_CAElementIcon {
+  background: rgba(255,255,255,0);
+  font-size: 14px;
+}
+
+.HBLCL_CTD_Name {
+  font-weight: bold;
+  color: rgba(255,255,255,0.5);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.HBLCL_CTD_Address {
+  color: rgba(255,255,255,0.25);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.HBLCL_CAElement.HBLCL_CAEReply {
+  border: solid 1px rgba(255,255,255,0.05);
+}
+
+.HBLCL_CAElement.HBLCL_CAEReply:hover {
+  transition: ease 0.4s;
+  border: solid 1px rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.5);
+}
+
+.HBLCL_CAElement.HBLCL_CAEReplies:hover {
+  transition: ease 0.4s;
+  color: rgba(173,90,255,0.75);
+}
+
+.HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEDown:hover {
+  transition: ease 0.4s;
+  color: rgba(255,114,54,0.85);
+}
+
+.HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEUp:hover {
+  transition: ease 0.4s;
+  color: rgba(255,70,70,0.85);
+}
+
+.HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEBolt:hover {
+  transition: ease 0.4s;
+  color: rgba(255,255,0,0.85);
+}
+
+.HBLCL_CAElement:hover {
+  transition: ease 0.4s;
+  transform: scale(1.05);
+}
+
+.HBLCL_CAElement:active {
+  transition: ease 0.1s;
+  transform: scale(0.95);
+}
+
+.HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEUp.HBLCL_CAEUpActive {
+  color: rgba(255,70,70,0.85);
+}
+
+.HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEDown.HBLCL_CAEDownActive {
+  color: rgba(255,114,54,0.85);
+}
+
+.HBLCL_CAElement.HBLCL_CAElement.HBLCL_CAEBolt.HBLCL_CAEBoltActive {
+  color: rgba(255,255,0,0.85);
+}
+
+.HBLCL_CAElement.HBLCL_CAEReplies.HBLCL_CAERepliesActive {
+  color: rgba(173,90,255,0.75);
+}
+
+.HBLCL_CommentActionsInside {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  flex-wrap: wrap;
+  grid-gap: 10px;
+}
+
+.HBLCL_CommentActionsDetails {
+  color: rgba(255,255,255,0.25);
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  grid-gap: 10px;
+}
+
+.HBLCL_CADDate {
+}
+
+.HBLCL_CADTime {
+}
+
+.HBLCL_CommentTopDetailsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  grid-gap: 15px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.HomeBodyListCommentsCreation {
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+}
+
+.HBLCC_Top {
+  display:flex;
+}
+
+.HBLCC_Bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: start;
+}
+
+.HBLCC_Top_Box {
+  transition: border, background, box-shadow ease 0.4s;
+  width: 100%;
+  background: rgba(0,0,0,0.05);
+  border: solid 1px rgba(255,255,255,0.05);
+  box-shadow: inset 0 0 8px 0 rgb(0,0,0,0.1);
+  border-radius: 10px;
+  min-height: 50px;
+  height: 150px;
+  min-width: 100%;
+  outline: unset;
+  padding: 15px 20px;
+  color: rgba(255,255,255,0.75);
+  flex-grow:1;
+  resize: vertical;
+}
+
+@media (max-width: 576px) {
+  .HBLCC_Top_Box {
+    padding: 15px 15px;
+    height: 100px;
+  }
+}
+
+.HBLCC_Top_Box:focus, hover {
+  transition: border, background, box-shadow ease 0.4s;
+  background: rgba(0,0,0,0.1);
+  border: solid 1px rgba(255,255,255,0.1);
+  box-shadow: inset 0 0 8px 0 rgb(0,0,0,0.15);
+  outline: unset;
+}
+
+.HBLCC_BottomButton {
+  transition: ease 0.4s;
+  text-decoration: unset;
+  color: rgba(255,255,255,0.25);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0);
+  font-size: 16px;
+  transform: scale(1);
+  position: relative;
+  cursor: pointer;
+  border: solid 1px rgba(255,255,255,0.1);
+}
+
+.HBLCC_BottomButton:hover {
+  transition: ease 0.4s;
+  text-decoration: unset;
+  color: rgba(255,255,255,0.75);
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  font-size: 16px;
+  transform: scale(1.03);
+  /*border: solid 1px rgba(255,255,255,0);*/
+}
+
+.HBLCC_BottomButton:active {
+  transition: ease 0.1s;
+  transform: scale(0.98);
+}
+
+.HBLCC_BottomButton::before {
+  transition: ease 0.4s;
+  background: linear-gradient(to top right, #262626, #292929, #262626);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.HBLCC_BottomButton:hover::before {
+  transition: ease 0.4s;
+  background: linear-gradient(to top right, #262626, #292929, #262626);
+  opacity: 1;
+}
+
+.HBLCL_NoComments {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  font-size: 24px;
+  /*font-weight: bold;*/
+  color: rgba(255,255,255,0.15);
+}
+
+.pUMCB_PrimeComment {
+  width: 100%;
+  padding: 0 0 15px 0;
+  margin: 0 0 15px 0;
+  /*border-bottom: solid 1px rgba(255,255,255,0.1);*/
+}
+
+.pUMCB_RepliesToPrime {
+  width: 100%;
+  overflow: auto;
+  padding: 25px;
+  grid-gap: 25px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgba(255,255,255,0.1);
+  border-radius: 10px;
+  min-height: 200px;
+}
+
+.pUMCB_CommentToPrime {
+  width: 100%;
+  margin: 0 0 25px 0;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+}
+
+.HBLCL_CommentTopOther {
+  /*width: 100%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+  flex-grow: 1;
+}
+
+.HBLCL_CTO {
+  transition: ease 0.4s;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  border: solid 1px rgba(255,255,255,0.1);
+  overflow: hidden;
+  color: rgba(255,255,255,0.25);
+  font-size: 14px;
+}
+
+.HBLCL_CTOLink {
+  transition: ease 0.4s;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.25);
+}
+
+.HBLCL_CTOLink:hover {
+  transition: ease 0.4s;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+}
+
+.HBLCL_CTOLink:active > .HBLCL_CTOLinkIcon {
+  transition: ease 0.1s;
+  transform: scale(0.9);
+}
+
+.HBLCL_CTOText {
+  transition: ease 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.HBLCL_CommentTopPPWrapped {
+}

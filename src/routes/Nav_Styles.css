@@ -1,0 +1,207 @@
+.NavMain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.NavMainTop {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0 25px 0;
+}
+
+@media (max-width: 768px) {
+  .NavMainTop {
+    margin: 15px 0 0 0;
+  }
+}
+
+.NavMainBottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.NavMainTopInside {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0;
+}
+
+@media (max-width: 768px) {
+  .NavMainTopInside {
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
+  }
+}
+
+.NavMainBottomInside {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 10px;
+  background: #262626;
+  border-radius: 15px;
+  margin: 25px 0 0 0;
+  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+}
+
+.NMBI_Link {
+  transition: ease 0.4s;
+  padding: 10px 20px;
+  text-decoration: unset;
+  color: unset;
+  font-weight: bold;
+  color: rgba(255,255,255,0.25);
+  white-space: nowrap;
+}
+
+.NMBI_Link:hover {
+  transition: ease 0.4s;
+  text-decoration: unset;
+  color: unset;
+  font-weight: bold;
+  color: rgba(255,255,255,0.75);
+}
+
+.NMTI_Sec {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.NMTI_Sec_HomeLink {
+  transition: ease 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  grid-gap: 25px;
+  text-decoration: unset;
+  color: rgb(255,255,255);
+  font-weight: bold;
+  padding: 0 25px 0 0;
+  opacity: 0.5;
+}
+
+.NMTI_Sec_HomeLink:hover {
+  transition: ease 0.4s;
+  text-decoration: unset;
+  font-weight: bold;
+  opacity: 1;
+  color: unset;
+}
+
+.NMTI_SecInside {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  grid-gap: 15px;
+}
+
+.NMTI_SecInside_Link {
+  position: relative;
+  transition: ease 0.4s;
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: auto;
+  padding: 15px 25px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.25);
+  text-decoration: unset;
+  font-weight: bold;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .NMTI_SecInside_Link {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.NMTI_SecInside_Link:hover {
+  transition: ease 0.4s;
+  color: rgba(255,255,255,0.75);
+  box-shadow: 0 0 8px 0 rgb(0,0,0,0.1);
+  transform: scale(1.03);
+}
+
+.NMTI_SecInside_Link:active {
+  transition: ease 0.1s;
+  transform: scale(0.98);
+}
+
+.NMTI_SecInside_Link::before {
+  transition: ease 0.4s;
+  opacity: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(to top right, #262626, #292929, #262626);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.NMTI_SecInside_Link:hover::before {
+  transition: ease 0.4s;
+  opacity: 1;
+}
+
+.NMTI_SecInside_Link.NMTI_SI_LinkRelay:hover {
+  transition: ease 0.4s;
+  color: #a549ff;
+}
+
+.NMTI_SecInside_Link.NMTI_SI_LinkTip:hover {
+  transition: ease 0.4s;
+  color: #ffff5d;
+}
+
+.NMTI_Sec_HomeLink_Logo {
+  width: 100%;
+  height: 75px;
+  width: 75px;
+}
+
+.NMTI_Sec_HomeLink_Name {
+  font-size: 24px;
+}
+
+.NMBI_Links {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  /*flex-wrap: wrap;*/
+  grid-gap: 10px;
+  overflow-y: auto;
+  border-right: solid 1px rgba(255,255,255,0.1);
+}
+
+.NMBI_Links::-webkit-scrollbar, .element-with-scrollbar::-webkit-scrollbar-thumb {
+  width: 0.5em;
+  background-color: transparent;
+  background-color: transparent;
+  height: 0;
+}
