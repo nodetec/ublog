@@ -12,12 +12,15 @@
   import { onMount } from "svelte";
   import { login } from "$lib/utils/login";
   import session from "$lib/stores/session";
+  import { fetchAuthor } from "$lib/stores/author";
+  import { title, logo } from "~/config";
 
   onMount(async () => {
     $ndk
       .connect()
       .then(() => {
-        console.log("NDK connected");
+        fetchAuthor();
+        console.log("%cNDK connected", "color: #00FF00");
       })
       .catch((e) => {
         console.error(e);
@@ -34,9 +37,9 @@
           <a class="NMTI_Sec_HomeLink" href="/">
             <div
               class="NMTI_Sec_HomeLink_Logo"
-              style="background: url('src/uBlog Logo.svg') center / cover no-repeat;"
+              style="background: url('{logo}') center / cover no-repeat;"
             ></div>
-            <p class="NMTI_Sec_HomeLink_Name">uBlog</p>
+            <p class="NMTI_Sec_HomeLink_Name">{title}</p>
           </a>
         </div>
         <div class="NMTI_Sec">
@@ -71,7 +74,7 @@
               </svg></a
             ><button
               id="loginChange"
-              on:click={() => login($ndk)}
+              on:click={login}
               class="NMTI_SecInside_Link"
             >
               {#if $session}
