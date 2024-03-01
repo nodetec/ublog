@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ArticleCard from "./ArticleCard.svelte";
   import Pagination from "./Pagination.svelte";
   import AuthorRight from "./AuthorRight.svelte";
@@ -13,7 +13,6 @@
         <div class="HomeBodyListCards">
           <ArticleCard />
         </div>
-
         <Pagination />
       </div>
 
