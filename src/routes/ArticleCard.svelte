@@ -1,29 +1,33 @@
-<a
-  class="HomeBodyListCardLink"
-  href="/This Is A Blog Title That Will Be The Most Ambitious Title In The World"
->
+<script lang="ts">
+  import type { NDKEvent } from "@nostr-dev-kit/ndk";
+
+  export let article: NDKEvent;
+
+  const id = article.id;
+  const content = article.content;
+  const title = article.tagValue("title");
+  const image = article.tagValue("image");
+  const summary = article.tagValue("summary");
+  const short = summary || content;
+</script>
+
+<a class="HomeBodyListCardLink" href={id}>
   <div class="HomeBodyListCard">
     <div class="HBLC_FeaturedImg">
       <div
         class="HBLC_FeaturedImg_Inside"
-        style="background: url('https://c.tenor.com/wpDsicEoJu0AAAAd/tenor.gif') center / cover no-repeat;"
+        style="background: url('{image}') center / cover no-repeat;"
       ></div>
     </div>
     <div class="HBLC_PostTitle">
       <h3 class="HBLC_PostTitleHeading">
-        This Is A Blog Title That Will Be The Most Ambitious Title In The World!<br
-        />
+        {title}
       </h3>
     </div>
     <div class="HBLC_PostShort">
       <p class="HBLC_PostShortPara">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-        odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-        quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
-        mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-        Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Curabitur
-        sodales ligula in libero.<br /><br />
+        {short}
+        <br /><br />
       </p>
     </div>
   </div>
@@ -66,17 +70,17 @@
     padding: 10px 15px 15px 15px;
   }
 
-  .HBLC_PostCategories {
+  /* .HBLC_PostCategories {
     padding: 15px;
-  }
+  } */
 
-  .HBLC_PostTags {
+  /* .HBLC_PostTags {
     padding: 15px;
-  }
+  } */
 
-  .HBLC_PostBy {
+  /* .HBLC_PostBy {
     padding: 15px;
-  }
+  } */
 
   .HBLC_FeaturedImg_Inside {
     position: absolute;

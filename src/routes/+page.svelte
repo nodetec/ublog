@@ -1,18 +1,16 @@
 <script lang="ts">
-  import ArticleCard from "./ArticleCard.svelte";
   import Pagination from "./Pagination.svelte";
   import AuthorRight from "./AuthorRight.svelte";
   import Search from "./Search.svelte";
   import ShortPostsRight from "./ShortPostsRight.svelte";
+  import ArticlesList from "./ArticlesList.svelte";
 </script>
 
 <div class="secMain">
   <div class="ContainerMain">
     <div class="HomeBody">
       <div class="HomeBodyList">
-        <div class="HomeBodyListCards">
-          <ArticleCard />
-        </div>
+        <ArticlesList />
         <Pagination />
       </div>
 
