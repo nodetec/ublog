@@ -31,8 +31,8 @@
     align-items: center;
   }
 
-  .NMBI_Search {
-  }
+  /* .NMBI_Search {
+  } */
 
   .NMBI_SearchWrapper {
     display: grid;

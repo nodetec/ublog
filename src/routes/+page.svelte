@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Pagination from "./Pagination.svelte";
   import AuthorRight from "./AuthorRight.svelte";
   import Search from "./Search.svelte";
   import ShortPostsRight from "./ShortPostsRight.svelte";
@@ -11,7 +10,6 @@
     <div class="HomeBody">
       <div class="HomeBodyList">
         <ArticlesList />
-        <Pagination />
       </div>
 
       <div class="HomeBodySide">
@@ -23,6 +21,7 @@
           <div class="HomeBodySideSec">
             <Search />
           </div>
+
           <div class="HomeBodySideSec">
             <ShortPostsRight />
           </div>

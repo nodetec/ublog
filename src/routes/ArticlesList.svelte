@@ -1,22 +1,56 @@
 <script lang="ts">
   import ArticleCard from "./ArticleCard.svelte";
-  import { fetchArticles } from "$lib/utils/articles";
-  import { nip19 } from "nostr-tools";
+  import Pagination from "./Pagination.svelte";
+
   import { npub } from "~/config";
+  import { page } from "$app/stores";
+  import { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
+  import { nip19 } from "nostr-tools";
+  import ndk from "~/lib/stores/ndk";
 
   const authorPK = nip19.decode(npub).data;
+  const articlesPerPage = 3; // 9
+
+  let articlesCount = 0;
+  let currentPage = 1;
+  let p: string | null = null;
+  let articles: NDKEvent[] = [];
+
+  $: articlesCount = articles.length;
+
+  $: p = $page.url.searchParams.get("page");
+  $: currentPage = p ? parseInt(p) : 1;
+
+  let currentPageArticles: NDKEvent[] = [];
+  let start = 0;
+  let end = articlesPerPage + 1;
+  $: start = (currentPage - 1) * articlesPerPage;
+  $: end = start + articlesPerPage;
+  $: currentPageArticles = articles.slice(start, end);
+
+  $: console.log({ start, end });
+
+  async function fetchArticles() {
+    const events = await $ndk.fetchEvents({
+      kinds: [NDKKind.Article],
+      authors: [authorPK],
+    });
+    articles = Array.from(events);
+  }
+
+  fetchArticles();
 </script>
 
 <div class="HomeBodyListCards">
-  {#await fetchArticles([authorPK])}
-    <p>Loading...</p>
-  {:then articles}
-    {#if articles && Array.from(articles).length > 0}
-      {#each articles as article}
-        <ArticleCard {article} />
-      {/each}
-    {:else}
-      <p>no articles</p>
-    {/if}
-  {/await}
+  {#if articlesCount > 0}
+    {#each currentPageArticles as article}
+      <ArticleCard {article} />
+    {/each}
+    <Pagination
+      {currentPage}
+      totalPages={Math.ceil(articlesCount / articlesPerPage)}
+    />
+  {:else}
+    <p>no articles</p>
+  {/if}
 </div>

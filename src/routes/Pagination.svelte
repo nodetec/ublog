@@ -1,21 +1,48 @@
-<div class="HomeBodyListPagination">
-  <div class="HBLP_Inside">
-    <a class="HBLP_Inside_Box" href="#"><i class="fas fa-chevron-left"></i></a
-    ><a class="HBLP_Inside_Box HBLP_Inside_Box_Active" href="#">
-      <p>1</p>
-    </a><a class="HBLP_Inside_Box" href="#">
-      <p>2</p>
-    </a><a class="HBLP_Inside_Box" href="#">
-      <p>3</p>
-    </a>
-    <p class="HBLP_Inside_Box HBLP_Inside_BoxDots">...</p>
-    <a class="HBLP_Inside_Box" href="#">
-      <p>8</p>
-    </a><a class="HBLP_Inside_Box" href="#"
-      ><i class="fas fa-chevron-right"></i></a
-    >
+<script lang="ts">
+  import { goto } from "$app/navigation";
+
+  export let totalPages = 1;
+  export let currentPage = 1;
+
+  function toPage(n: number) {
+    if (n < 1 || n > totalPages) return;
+    goto(`?page=${n.toString()}`);
+  }
+
+  function prevPage() {
+    toPage(currentPage - 1);
+  }
+
+  function nextPage() {
+    toPage(currentPage + 1);
+  }
+</script>
+
+{#if totalPages > 1}
+  <div class="HomeBodyListPagination">
+    <div class="HBLP_Inside">
+      <button class="HBLP_Inside_Box" on:click={prevPage}
+        ><i class="fas fa-chevron-left"></i></button
+      >
+
+      {#each { length: totalPages } as _, idx}
+        {@const pageNum = idx + 1}
+        {@const isActive = pageNum === currentPage}
+        <button
+          class="HBLP_Inside_Box"
+          class:HBLP_Inside_Box_Active={isActive}
+          on:click={() => toPage(pageNum)}
+        >
+          <p>{pageNum}</p>
+        </button>
+      {/each}
+
+      <button class="HBLP_Inside_Box" on:click={nextPage}
+        ><i class="fas fa-chevron-right"></i></button
+      >
+    </div>
   </div>
-</div>
+{/if}
 
 <style>
   .HomeBodyListPagination {
