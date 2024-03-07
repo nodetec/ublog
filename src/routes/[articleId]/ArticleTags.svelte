@@ -1,8 +1,14 @@
-<div class="HBLA_Inside_BodyTags">
-  <a class="HBLA_Inside_BodyTagsTag">Tag 1</a><a class="HBLA_Inside_BodyTagsTag"
-    >Tag 2</a
-  ><a class="HBLA_Inside_BodyTagsTag">Tag 3</a>
-</div>
+<script lang="ts">
+  export let tags: string[] = [];
+</script>
+
+{#if tags.length > 0}
+  <div class="HBLA_Inside_BodyTags">
+    {#each tags as tag (tag)}
+      <span class="HBLA_Inside_BodyTagsTag">{tag}</span>
+    {/each}
+  </div>
+{/if}
 
 <style>
   .HBLA_Inside_BodyTags {

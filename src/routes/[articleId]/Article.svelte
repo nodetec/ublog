@@ -11,6 +11,7 @@
   const title = article.tagValue("title");
   const image = article.tagValue("image");
   const summary = article.tagValue("summary");
+  const tags = article.getMatchingTags("t").map((t) => t[1]);
 </script>
 
 <div class="HomeBodyListArticle">
@@ -30,7 +31,7 @@
         {summary}
       </blockquote>
       <SvelteMarkdown source={content} />
-      <ArticleTags />
+      <ArticleTags {tags} />
     </div>
   </div>
   <ArticleActions />
