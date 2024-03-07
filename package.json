@@ -2,6 +2,7 @@
   "name": "ublogfreaktest",
   "version": "0.0.1",
   "devDependencies": {
+    "@svelte-put/qr": "^1.0.3",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-vercel": "^5.1.0",
     "@sveltejs/kit": "^2.0.0",

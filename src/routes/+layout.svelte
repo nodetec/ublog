@@ -134,9 +134,6 @@
   </div>
 </div>
 
-<!-- pop up for qr -->
-<PopUp_QR />
-
 <!-- pop up for relays -->
 <PopUp_Relays />
 
