@@ -21,8 +21,10 @@
 {#if totalPages > 1}
   <div class="HomeBodyListPagination">
     <div class="HBLP_Inside">
-      <button class="HBLP_Inside_Box" on:click={prevPage}
-        ><i class="fas fa-chevron-left"></i></button
+      <button
+        class="HBLP_Inside_Box"
+        on:click={prevPage}
+        disabled={currentPage === 1}><i class="fas fa-chevron-left"></i></button
       >
 
       {#each { length: totalPages } as _, idx}
@@ -37,7 +39,10 @@
         </button>
       {/each}
 
-      <button class="HBLP_Inside_Box" on:click={nextPage}
+      <button
+        class="HBLP_Inside_Box"
+        on:click={nextPage}
+        disabled={currentPage === totalPages}
         ><i class="fas fa-chevron-right"></i></button
       >
     </div>
@@ -81,10 +86,15 @@
     border: solid 1px rgba(255, 255, 255, 0);
     color: rgba(255, 255, 255, 0.1);
     font-weight: bold;
+    transition: ease 0.4s;
+    cursor: pointer;
   }
 
-  .HBLP_Inside_Box:hover {
-    transition: ease 0.4s;
+  .HBLP_Inside_Box:disabled {
+    cursor: not-allowed;
+  }
+
+  .HBLP_Inside_Box:hover:not(:disabled) {
     text-decoration: unset;
     color: unset;
     background: linear-gradient(to top right, #232323, #262626, #232323);

@@ -9,7 +9,7 @@
   import ndk from "~/lib/stores/ndk";
 
   const authorPK = nip19.decode(npub).data;
-  const articlesPerPage = 3; // 9
+  const articlesPerPage = 9;
 
   let articlesCount = 0;
   let currentPage = 1;
@@ -28,8 +28,6 @@
   $: end = start + articlesPerPage;
   $: currentPageArticles = articles.slice(start, end);
 
-  $: console.log({ start, end });
-
   async function fetchArticles() {
     const events = await $ndk.fetchEvents({
       kinds: [NDKKind.Article],
@@ -41,16 +39,16 @@
   fetchArticles();
 </script>
 
-<div class="HomeBodyListCards">
-  {#if articlesCount > 0}
-    {#each currentPageArticles as article}
+{#if articlesCount > 0}
+  <div class="HomeBodyListCards">
+    {#each currentPageArticles as article (article.id)}
       <ArticleCard {article} />
     {/each}
-    <Pagination
-      {currentPage}
-      totalPages={Math.ceil(articlesCount / articlesPerPage)}
-    />
-  {:else}
-    <p>no articles</p>
-  {/if}
-</div>
+  </div>
+  <Pagination
+    {currentPage}
+    totalPages={Math.ceil(articlesCount / articlesPerPage)}
+  />
+{:else}
+  <p>no articles</p>
+{/if}

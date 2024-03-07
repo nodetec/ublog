@@ -69,7 +69,7 @@
             </div>
             <a
               class="HBSS_Author_Top_IconWrapped"
-              href="https://primal.net/p/npub18n4ysp43ux5c98fs6h9c57qpr4p8r3j8f6e32v0vj8egzy878aqqyzzk9r"
+              href="https://primal.net/p/{npub}"
               target="_blank"
               ><svg
                 class="HBSS_Author_Top_Icon"
