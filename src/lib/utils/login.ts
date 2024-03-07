@@ -12,3 +12,11 @@ export async function login() {
   const user = await signer.user();
   setSession(user);
 }
+
+export async function sudo(fallback: Function) {
+  if (!get(session)) {
+    await login();
+  }
+
+  fallback();
+}

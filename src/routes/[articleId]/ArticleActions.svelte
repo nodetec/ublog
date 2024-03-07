@@ -2,66 +2,75 @@
   import { NDKEvent, NDKKind } from "@nostr-dev-kit/ndk";
   import ndk from "~/lib/stores/ndk";
   import session from "~/lib/stores/session";
-  import { login } from "~/lib/utils/login";
+  import { sudo } from "~/lib/utils/login";
 
   export let articleId: string;
   export let articlePubkey: string;
   export let reactions: NDKEvent[];
-  let upVotes = 0;
-  let downVotes = 0;
+  let upVotes: NDKEvent[] = [];
+  let downVotes: NDKEvent[] = [];
+  let upVotesCount = 0;
+  let downVotesCount = 0;
 
   $: upVotes = reactions.filter((reaction) =>
     ["", "+", "❤️"].some((react) => react === reaction.content)
-  ).length;
-  $: downVotes = reactions.filter(
-    (reaction) => reaction.content === "-"
-  ).length;
+  );
+
+  $: downVotes = reactions.filter((reaction) => reaction.content === "-");
+
+  $: upVotesCount = upVotes.length;
+  $: downVotesCount = downVotes.length;
 
   let upVoted = false;
   let downVoted = false;
 
-  $: reactions.forEach((reaction) => {
-    if (reaction.content === "-") {
-      if (reaction.pubkey === $session?.pubkey) {
-        downVoted = true;
-      }
-      if (["", "+", "❤️"].some((react) => react === reaction.content)) {
-        if (reaction.pubkey === $session?.pubkey) {
-          upVoted = true;
-        }
-      }
+  $: upVotes.forEach((upVote) => {
+    if (upVote.pubkey === $session?.pubkey) {
+      upVoted = true;
+    }
+  });
+
+  $: downVotes.forEach((downVote) => {
+    if (downVote.pubkey === $session?.pubkey) {
+      downVoted = true;
     }
   });
 
   async function vote(content: string) {
-    if (!$session) {
-      login();
-    } else {
-      const event = new NDKEvent($ndk, {
-        pubkey: $session.pubkey,
-        kind: NDKKind.Reaction,
-        created_at: Math.floor(new Date().getTime() / 1000),
-        content,
-        tags: [
-          ["e", articleId],
-          ["p", articlePubkey],
-          ["k", NDKKind.Article.toString()],
-        ],
-      });
-      await event.publish();
-    }
+    const event = new NDKEvent($ndk, {
+      pubkey: $session!.pubkey,
+      kind: NDKKind.Reaction,
+      created_at: Math.floor(new Date().getTime() / 1000),
+      content,
+      tags: [
+        ["e", articleId],
+        ["p", articlePubkey],
+        ["k", NDKKind.Article.toString()],
+      ],
+    });
+    await event.publish();
   }
 
   function upVote() {
-    if (!upVoted) {
-      vote("+");
-    }
+    sudo(
+      () =>
+        !upVoted &&
+        vote("+").then(() => {
+          upVotesCount++;
+          upVoted = true;
+        })
+    );
   }
 
   function downVote() {
-    if (!downVoted) {
-      vote("-");
-    }
+    sudo(
+      () =>
+        !downVoted &&
+        vote("-").then(() => {
+          downVotesCount++;
+          downVoted = true;
+        })
+    );
   }
 </script>
 
@@ -125,7 +134,7 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">{upVotes}</p>
+    <p class="HBLA_Details_CardText">{upVotesCount}</p>
   </button>
   <button
     disabled={downVoted}
@@ -148,7 +157,7 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">{downVotes}</p>
+    <p class="HBLA_Details_CardText">{downVotesCount}</p>
   </button>
 </div>
 
