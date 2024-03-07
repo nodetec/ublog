@@ -7,6 +7,7 @@
   import { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
   import { nip19 } from "nostr-tools";
   import ndk from "~/lib/stores/ndk";
+  import articles from "~/lib/stores/articles";
 
   const authorPK = nip19.decode(npub).data;
   const articlesPerPage = 9;
@@ -14,9 +15,8 @@
   let articlesCount = 0;
   let currentPage = 1;
   let p: string | null = null;
-  let articles: NDKEvent[] = [];
 
-  $: articlesCount = articles.length;
+  $: articlesCount = $articles.length;
 
   $: p = $page.url.searchParams.get("page");
   $: currentPage = p ? parseInt(p) : 1;
@@ -26,14 +26,14 @@
   let end = articlesPerPage + 1;
   $: start = (currentPage - 1) * articlesPerPage;
   $: end = start + articlesPerPage;
-  $: currentPageArticles = articles.slice(start, end);
+  $: currentPageArticles = $articles.slice(start, end);
 
   async function fetchArticles() {
     const events = await $ndk.fetchEvents({
       kinds: [NDKKind.Article],
       authors: [authorPK],
     });
-    articles = Array.from(events);
+    articles.set(Array.from(events));
   }
 
   fetchArticles();

@@ -31,6 +31,7 @@
     "@nostr-dev-kit/ndk": "^2.5.0",
     "@nostr-dev-kit/ndk-cache-dexie": "^2.2.7",
     "nostr-tools": "^2.3.1",
+    "svelte-markdown": "^0.4.1",
     "svelte-preprocess": "^5.1.3"
   }
 }
