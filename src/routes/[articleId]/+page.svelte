@@ -7,14 +7,11 @@
   import ArticleComments from "./ArticleComments.svelte";
   import ndk from "$lib/stores/ndk";
   import articles from "$lib/stores/articles";
-  import { npub } from "~/config";
   import { NDKEvent, NDKKind } from "@nostr-dev-kit/ndk";
-  import { nip19 } from "nostr-tools";
   import { onMount } from "svelte";
 
   export let articleId: string;
   export let data: { articleId: string };
-  const authorPK = nip19.decode(npub).data;
   let article: NDKEvent | null = null;
 
   onMount(async () => {
@@ -24,7 +21,6 @@
     } else {
       article = await $ndk.fetchEvent({
         kinds: [NDKKind.Article],
-        authors: [authorPK],
         ids: [data.articleId],
       });
     }
