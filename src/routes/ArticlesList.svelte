@@ -8,6 +8,7 @@
   import { nip19 } from "nostr-tools";
   import ndk from "~/lib/stores/ndk";
   import articles from "~/lib/stores/articles";
+  import { onMount } from "svelte";
 
   const authorPK = nip19.decode(npub).data;
   const articlesPerPage = 9;
@@ -28,15 +29,13 @@
   $: end = start + articlesPerPage;
   $: currentPageArticles = $articles.slice(start, end);
 
-  async function fetchArticles() {
+  onMount(async () => {
     const events = await $ndk.fetchEvents({
       kinds: [NDKKind.Article],
       authors: [authorPK],
     });
     articles.set(Array.from(events));
-  }
-
-  fetchArticles();
+  });
 </script>
 
 {#if articlesCount > 0}

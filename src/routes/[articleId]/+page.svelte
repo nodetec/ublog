@@ -9,6 +9,7 @@
   import articles from "$lib/stores/articles";
   import { NDKEvent, NDKKind } from "@nostr-dev-kit/ndk";
   import { onMount } from "svelte";
+  import { BECH32_REGEX } from "nostr-tools/nip19";
 
   export let articleId: string;
   export let data: { articleId: string };
@@ -19,10 +20,14 @@
     if (storedArticle) {
       article = storedArticle;
     } else {
-      article = await $ndk.fetchEvent({
-        kinds: [NDKKind.Article],
-        ids: [data.articleId],
-      });
+      if (BECH32_REGEX.test(data.articleId)) {
+        article = await $ndk.fetchEvent(data.articleId);
+      } else {
+        article = await $ndk.fetchEvent({
+          kinds: [NDKKind.Article],
+          ids: [data.articleId],
+        });
+      }
     }
   });
 </script>

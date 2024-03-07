@@ -3,7 +3,7 @@
 
   export let article: NDKEvent;
 
-  const id = article.id;
+  const bech32id = article.encode();
   const content = article.content;
   const title = article.tagValue("title");
   const image = article.tagValue("image");
@@ -11,7 +11,7 @@
   const short = summary || content;
 </script>
 
-<a class="HomeBodyListCardLink" href={id}>
+<a class="HomeBodyListCardLink" href={bech32id}>
   <div class="HomeBodyListCard">
     <div class="HBLC_FeaturedImg">
       <div

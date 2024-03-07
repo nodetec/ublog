@@ -1,5 +1,4 @@
 <script lang="ts">
-  import PopUp_QR from "./PopUp_QR.svelte";
   import PopUp_Relays from "./PopUp_Relays.svelte";
   import PopUp_Zap from "./PopUp_Zap.svelte";
   import "../styles/normalize.css";

@@ -2,13 +2,15 @@
   import ArticleTags from "./ArticleTags.svelte";
   import ArticleActions from "./ArticleActions.svelte";
   import ArticleDetails from "./ArticleDetails.svelte";
-  import type { NDKEvent } from "@nostr-dev-kit/ndk";
+  import { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
   import SvelteMarkdown from "svelte-markdown";
+  import { onMount } from "svelte";
+  import ndk from "$lib/stores/ndk";
 
   export let article: NDKEvent;
 
-  console.log({ article });
-
+  const id = article.id;
+  const pubkey = article.pubkey;
   const content = article.content;
   const title = article.tagValue("title");
   const image = article.tagValue("image");
@@ -17,15 +19,21 @@
   const publishedAt = article.tagValue("published_at");
   const client = article.tagValue("client");
   const tags = article.getMatchingTags("t").map((t) => t[1]);
+
+  let reactions: NDKEvent[] = [];
+  onMount(async () => {
+    const events = await $ndk.fetchEvents({
+      kinds: [NDKKind.Reaction],
+      "#e": [id],
+    });
+    reactions = Array.from(events);
+  });
 </script>
 
 <div class="HomeBodyListArticle">
   <div class="HBLA_Inside">
     {#if image}
-      <div
-        class="HBLA_Inside_Featuredimg"
-        style="background: url('{image}') center / cover no-repeat;"
-      ></div>
+      <img class="HBLA_Inside_Featuredimg" src={image} alt={title} />
     {/if}
     <div class="HBLA_Inside_Title">
       <h2 class="HBLA_Inside_TitleText">
@@ -41,7 +49,7 @@
       <ArticleTags {tags} />
     </div>
   </div>
-  <ArticleActions />
+  <ArticleActions {reactions} articleId={id} articlePubkey={pubkey} />
   <ArticleDetails {createdAt} {publishedAt} {client} />
 </div>
 
@@ -68,11 +76,8 @@
 
   .HBLA_Inside_Featuredimg {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    aspect-ratio: 16/9;
+    height: auto;
+    object-fit: contain;
   }
 
   .HBLA_Inside_Title {

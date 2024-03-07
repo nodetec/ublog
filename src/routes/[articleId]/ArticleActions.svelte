@@ -1,3 +1,70 @@
+<script lang="ts">
+  import { NDKEvent, NDKKind } from "@nostr-dev-kit/ndk";
+  import ndk from "~/lib/stores/ndk";
+  import session from "~/lib/stores/session";
+  import { login } from "~/lib/utils/login";
+
+  export let articleId: string;
+  export let articlePubkey: string;
+  export let reactions: NDKEvent[];
+  let upVotes = 0;
+  let downVotes = 0;
+
+  $: upVotes = reactions.filter((reaction) =>
+    ["", "+", "❤️"].some((react) => react === reaction.content)
+  ).length;
+  $: downVotes = reactions.filter(
+    (reaction) => reaction.content === "-"
+  ).length;
+
+  let upVoted = false;
+  let downVoted = false;
+
+  $: reactions.forEach((reaction) => {
+    if (reaction.content === "-") {
+      if (reaction.pubkey === $session?.pubkey) {
+        downVoted = true;
+      }
+      if (["", "+", "❤️"].some((react) => react === reaction.content)) {
+        if (reaction.pubkey === $session?.pubkey) {
+          upVoted = true;
+        }
+      }
+    }
+  });
+
+  async function vote(content: string) {
+    if (!$session) {
+      login();
+    } else {
+      const event = new NDKEvent($ndk, {
+        pubkey: $session.pubkey,
+        kind: NDKKind.Reaction,
+        created_at: Math.floor(new Date().getTime() / 1000),
+        content,
+        tags: [
+          ["e", articleId],
+          ["p", articlePubkey],
+          ["k", NDKKind.Article.toString()],
+        ],
+      });
+      await event.publish();
+    }
+  }
+
+  function upVote() {
+    if (!upVoted) {
+      vote("+");
+    }
+  }
+
+  function downVote() {
+    if (!downVoted) {
+      vote("-");
+    }
+  }
+</script>
+
 <div class="HBLA_Details">
   <a href="#ArticleComments" style="text-decoration: unset;color: unset;">
     <div class="HBLA_Details_Card HBLA_D_CComments">
@@ -37,7 +104,12 @@
     </div>
     <p class="HBLA_Details_CardText">69k</p>
   </div>
-  <div id="reactUp" class="HBLA_Details_Card HBLA_D_CReactUp HBLA_D_CRUActive">
+  <button
+    disabled={upVoted}
+    on:click={upVote}
+    id="reactUp"
+    class="HBLA_Details_Card HBLA_D_CReactUp HBLA_D_CRUActive"
+  >
     <div class="HBLA_Details_CardVisual">
       <svg
         class="HBLA_Details_CardVisualIcon"
@@ -53,9 +125,14 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">4.2k</p>
-  </div>
-  <div id="reactDown" class="HBLA_Details_Card HBLA_D_CReactDown">
+    <p class="HBLA_Details_CardText">{upVotes}</p>
+  </button>
+  <button
+    disabled={downVoted}
+    on:click={downVote}
+    id="reactDown"
+    class="HBLA_Details_Card HBLA_D_CReactDown"
+  >
     <div class="HBLA_Details_CardVisual">
       <svg
         class="HBLA_Details_CardVisualIcon"
@@ -71,8 +148,8 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">69</p>
-  </div>
+    <p class="HBLA_Details_CardText">{downVotes}</p>
+  </button>
 </div>
 
 <style>
@@ -87,6 +164,8 @@
     box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.1);
     color: rgba(255, 255, 255, 0.25);
     cursor: pointer;
+    border: none;
+    padding: 0;
   }
 
   .HBLA_Details_Card:hover
