@@ -7,19 +7,26 @@
 
   export let article: NDKEvent;
 
+  console.log({ article });
+
   const content = article.content;
   const title = article.tagValue("title");
   const image = article.tagValue("image");
   const summary = article.tagValue("summary");
+  const createdAt = article.created_at;
+  const publishedAt = article.tagValue("published_at");
+  const client = article.tagValue("client");
   const tags = article.getMatchingTags("t").map((t) => t[1]);
 </script>
 
 <div class="HomeBodyListArticle">
   <div class="HBLA_Inside">
-    <div
-      class="HBLA_Inside_Featuredimg"
-      style="background: url('{image}') center / cover no-repeat;"
-    ></div>
+    {#if image}
+      <div
+        class="HBLA_Inside_Featuredimg"
+        style="background: url('{image}') center / cover no-repeat;"
+      ></div>
+    {/if}
     <div class="HBLA_Inside_Title">
       <h2 class="HBLA_Inside_TitleText">
         {title}
@@ -35,7 +42,7 @@
     </div>
   </div>
   <ArticleActions />
-  <ArticleDetails />
+  <ArticleDetails {createdAt} {publishedAt} {client} />
 </div>
 
 <style>
@@ -65,7 +72,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 56.25%;
+    aspect-ratio: 16/9;
   }
 
   .HBLA_Inside_Title {
@@ -227,6 +234,8 @@
     margin-top: 0;
     margin-bottom: 0;
     word-wrap: normal;
+    overflow: auto;
+    max-width: 100%;
   }
 
   .HBLA_Inside_Body :global(hr) {
@@ -299,7 +308,7 @@
     background-color: #232323;
     font-style: italic;
     color: rgba(255, 255, 255, 0.75);
-    padding: 1rem 0 1rem 2rem;
+    padding: 1rem 2rem;
     margin: 1rem 0;
   }
 </style>
