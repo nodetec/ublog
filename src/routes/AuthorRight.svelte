@@ -1,6 +1,22 @@
 <script lang="ts">
   import { npub } from "~/config";
   import { author } from "~/lib/stores/author";
+
+  let copied = 0;
+
+  async function copyNpubToClipboard() {
+    try {
+      await navigator.clipboard.writeText(npub);
+      copied = 1;
+    } catch (err) {
+      console.error(err);
+      copied = -1;
+    } finally {
+      setTimeout(() => {
+        copied = 0;
+      }, 1250);
+    }
+  }
 </script>
 
 {#if $author}
@@ -34,21 +50,51 @@
             </p>
           </div>
           <div class="HBSS_Author_Top_IconWrapper">
-            <div id="copySiteOwnerAddress" class="HBSS_Author_Top_IconWrapped">
-              <svg
-                class="HBSS_Author_Top_Icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                width="1em"
-                height="1em"
-                fill="currentColor"
-              >
-                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                  d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
-                ></path>
-              </svg>
-            </div>
+            <button
+              id="copySiteOwnerAddress"
+              class="HBSS_Author_Top_IconWrapped"
+              on:click={copyNpubToClipboard}
+            >
+              {#if copied === 0}
+                <svg
+                  class="HBSS_Author_Top_Icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                >
+                  <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                  <path
+                    d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"
+                  ></path>
+                </svg>
+              {:else if copied === 1}
+                <svg
+                  class="HBSS_Author_Top_Icon success"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  ><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+                    d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                  /></svg
+                >
+              {:else if copied === -1}
+                <svg
+                  class="HBSS_Author_Top_Icon error"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  ><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                  /></svg
+                >
+              {/if}
+            </button>
             <div
               id="siteOwnerOpenPopUpMainQR"
               class="HBSS_Author_Top_IconWrapped"
@@ -291,8 +337,15 @@
     box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.1);
   }
 
-  /* .HBSS_Author_Top_Icon {
-  } */
+  .HBSS_Author_Top_Icon {
+    fill: currentColor;
+  }
+  .HBSS_Author_Top_Icon.success {
+    fill: rgba(70, 255, 70, 0.85);
+  }
+  .HBSS_Author_Top_Icon.error {
+    fill: rgba(255, 70, 70, 0.85);
+  }
 
   .HBSS_Author_Top_Address {
     width: 100%;
