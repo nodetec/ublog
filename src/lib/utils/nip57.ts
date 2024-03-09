@@ -15,6 +15,6 @@ export function getZapAmount(zap: NDKEvent) {
     return 0;
   }
 }
-export function getZapsAmount(zaps: NDKEvent[]) {
+export function getZapsTotalAmount(zaps: NDKEvent[]) {
   return zaps.reduce((total, zap) => total + getZapAmount(zap), 0);
 }

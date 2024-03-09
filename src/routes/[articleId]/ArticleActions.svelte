@@ -3,7 +3,8 @@
   import ndk from "~/lib/stores/ndk";
   import session from "~/lib/stores/session";
   import { sudo } from "~/lib/utils/login";
-  import { getZapsAmount } from "~/lib/utils/nip57";
+  import { dateToUnix } from "~/lib/utils/time";
+  import { getZapsTotalAmount } from "~/lib/utils/nip57";
 
   export let articleId: string;
   export let articlePubkey: string;
@@ -43,7 +44,7 @@
     const event = new NDKEvent($ndk, {
       pubkey: $session!.pubkey,
       kind: NDKKind.Reaction,
-      created_at: Math.floor(new Date().getTime() / 1000),
+      created_at: dateToUnix(),
       content,
       tags: [
         ["e", articleId],
@@ -115,7 +116,7 @@
       </svg>
     </div>
     <p class="HBLA_Details_CardText">
-      {getZapsAmount(zaps)}
+      {getZapsTotalAmount(zaps)}
     </p>
   </div>
   <button

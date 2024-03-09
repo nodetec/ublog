@@ -13,10 +13,10 @@ export async function login() {
   setSession(user);
 }
 
-export async function sudo(fallback: Function) {
+export async function sudo<T>(fn: () => T): Promise<T> {
   if (!get(session)) {
     await login();
   }
 
-  fallback();
+  return fn();
 }
