@@ -3,10 +3,13 @@
   import ndk from "~/lib/stores/ndk";
   import session from "~/lib/stores/session";
   import { sudo } from "~/lib/utils/login";
+  import { getZapsAmount } from "~/lib/utils/nip57";
 
   export let articleId: string;
   export let articlePubkey: string;
   export let reactions: NDKEvent[];
+  export let zaps: NDKEvent[];
+
   let upVotes: NDKEvent[] = [];
   let downVotes: NDKEvent[] = [];
   let upVotesCount = 0;
@@ -111,13 +114,16 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">69k</p>
+    <p class="HBLA_Details_CardText">
+      {getZapsAmount(zaps)}
+    </p>
   </div>
   <button
     disabled={upVoted}
     on:click={upVote}
     id="reactUp"
-    class="HBLA_Details_Card HBLA_D_CReactUp HBLA_D_CRUActive"
+    class:HBLA_D_CRUActive={upVoted}
+    class="HBLA_Details_Card HBLA_D_CReactUp"
   >
     <div class="HBLA_Details_CardVisual">
       <svg
@@ -139,6 +145,7 @@
   <button
     disabled={downVoted}
     on:click={downVote}
+    class:HBLA_D_CRDActive={downVoted}
     id="reactDown"
     class="HBLA_Details_Card HBLA_D_CReactDown"
   >

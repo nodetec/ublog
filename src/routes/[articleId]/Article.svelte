@@ -21,12 +21,18 @@
   const tags = article.getMatchingTags("t").map((t) => t[1]);
 
   let reactions: NDKEvent[] = [];
+  let zaps: NDKEvent[] = [];
+
   onMount(async () => {
-    const events = await $ndk.fetchEvents({
-      kinds: [NDKKind.Reaction],
-      "#e": [id],
-    });
-    reactions = Array.from(events);
+    const events = Array.from(
+      await $ndk.fetchEvents({
+        kinds: [NDKKind.Reaction, NDKKind.Zap],
+        "#e": [id],
+      })
+    );
+
+    reactions = events.filter((e) => e.kind === NDKKind.Reaction);
+    zaps = events.filter((e) => e.kind === NDKKind.Zap);
   });
 </script>
 
@@ -35,21 +41,25 @@
     {#if image}
       <img class="HBLA_Inside_Featuredimg" src={image} alt={title} />
     {/if}
-    <div class="HBLA_Inside_Title">
-      <h2 class="HBLA_Inside_TitleText">
-        {title}
-      </h2>
-    </div>
+    {#if title}
+      <div class="HBLA_Inside_Title">
+        <h2 class="HBLA_Inside_TitleText">
+          {title}
+        </h2>
+      </div>
+    {/if}
     <div class="HBLA_Inside_Body">
       <base target="_blank" />
-      <blockquote>
-        {summary}
-      </blockquote>
+      {#if summary}
+        <blockquote>
+          {summary}
+        </blockquote>
+      {/if}
       <SvelteMarkdown source={content} />
       <ArticleTags {tags} />
     </div>
   </div>
-  <ArticleActions {reactions} articleId={id} articlePubkey={pubkey} />
+  <ArticleActions {zaps} {reactions} articleId={id} articlePubkey={pubkey} />
   <ArticleDetails {createdAt} {publishedAt} {client} />
 </div>
 
@@ -85,8 +95,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 5%;
     align-items: center;
-    padding: 3% 7%;
     color: rgba(255, 255, 255, 0.85);
   }
 
@@ -94,7 +104,6 @@
     width: 100%;
     padding: 5% 7%;
     color: rgba(255, 255, 255, 0.75);
-    padding-top: 0;
   }
 
   .HBLA_Inside_Body :global(p) {
