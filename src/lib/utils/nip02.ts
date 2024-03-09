@@ -24,6 +24,8 @@ export function getContacts() {
 }
 
 export async function follow() {
+  if (get(following)) return;
+
   const contacts = await getContacts();
   const authorPk = decode(npub).data;
 
@@ -46,6 +48,8 @@ export async function follow() {
 }
 
 export async function unFollow() {
+  if (!get(following)) return;
+
   const contacts = await getContacts();
   const authorPk = decode(npub).data;
 
