@@ -8,9 +8,26 @@
     downVoted,
   } from "$lib/stores/reactions";
   import { downVote, upVote } from "$lib/utils/nip07";
-  import { zaps } from "$lib/stores/zaps";
+  import { zaps, togglePopup, setZapAction, zapOpts } from "$lib/stores/zaps";
+  import { sudo } from "~/lib/utils/login";
 
   export let article: NDKEvent;
+
+  async function zapArticle() {
+    const { amount, comment } = $zapOpts;
+    try {
+      await sudo(async () => {
+        await article.zap(amount, comment);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function handleZapClick() {
+    togglePopup();
+    setZapAction(zapArticle);
+  }
 </script>
 
 <div class="HBLA_Details">
@@ -34,7 +51,11 @@
       <p class="HBLA_Details_CardText">420</p>
     </div>
   </a>
-  <div id="reactBolt" class="HBLA_Details_Card HBLA_D_CBolt">
+  <button
+    on:click={handleZapClick}
+    id="reactBolt"
+    class="HBLA_Details_Card HBLA_D_CBolt"
+  >
     <div class="HBLA_Details_CardVisual">
       <svg
         class="HBLA_Details_CardVisualIcon"
@@ -53,7 +74,7 @@
     <p class="HBLA_Details_CardText">
       {getZapsTotalAmount($zaps)}
     </p>
-  </div>
+  </button>
   <button
     disabled={$upVoted}
     on:click={() => upVote(article)}
