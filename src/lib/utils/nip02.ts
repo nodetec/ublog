@@ -9,7 +9,7 @@ import { decode } from "nostr-tools/nip19";
 import { following } from "../stores/follow";
 
 export function getContacts() {
-  return sudo(async () => {
+  return sudo(async function () {
     try {
       const event = await get(ndk).fetchEvent({
         kinds: [NDKKind.Contacts],
@@ -29,7 +29,7 @@ export async function follow() {
   const contacts = await getContacts();
   const authorPk = decode(npub).data;
 
-  sudo(async () => {
+  sudo(async function () {
     const event = new NDKEvent(get(ndk), {
       kind: NDKKind.Contacts,
       content: "",
@@ -53,7 +53,7 @@ export async function unFollow() {
   const contacts = await getContacts();
   const authorPk = decode(npub).data;
 
-  sudo(async () => {
+  sudo(async function () {
     const event = new NDKEvent(get(ndk), {
       kind: NDKKind.Contacts,
       content: "",

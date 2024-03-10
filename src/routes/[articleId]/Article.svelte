@@ -6,11 +6,11 @@
   import SvelteMarkdown from "svelte-markdown";
   import { onMount } from "svelte";
   import ndk from "$lib/stores/ndk";
+  import { reactions } from "$lib/stores/reactions";
 
   export let article: NDKEvent;
 
   const id = article.id;
-  const pubkey = article.pubkey;
   const content = article.content;
   const title = article.tagValue("title");
   const image = article.tagValue("image");
@@ -18,9 +18,10 @@
   const createdAt = article.created_at;
   const publishedAt = article.tagValue("published_at");
   const client = article.tagValue("client");
-  const tags = article.getMatchingTags("t").map((t) => t[1]);
+  const tags = Array.from(
+    new Set(article.getMatchingTags("t").map((t) => t[1]))
+  );
 
-  let reactions: NDKEvent[] = [];
   let zaps: NDKEvent[] = [];
 
   onMount(async () => {
@@ -31,7 +32,7 @@
       })
     );
 
-    reactions = events.filter((e) => e.kind === NDKKind.Reaction);
+    reactions.set(events.filter((e) => e.kind === NDKKind.Reaction));
     zaps = events.filter((e) => e.kind === NDKKind.Zap);
   });
 </script>
@@ -59,7 +60,7 @@
       <ArticleTags {tags} />
     </div>
   </div>
-  <ArticleActions {zaps} {reactions} articleId={id} articlePubkey={pubkey} />
+  <ArticleActions {article} {zaps} />
   <ArticleDetails {createdAt} {publishedAt} {client} />
 </div>
 

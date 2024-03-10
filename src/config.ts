@@ -14,9 +14,10 @@ export const npub =
 
 export const relays = [
   // "wss://purplepag.es",
-  // "wss://relay.snort.social",
-  // "wss://relay.damus.io",
-  "wss://relay.primal.net",
-  // "wss://nos.lol",
-  // "wss://nostr.wine",
+  "wss://relay.snort.social",
+  "wss://relay.damus.io",
+  // "wss://relay.primal.net",
+  "wss://offchain.pub",
+  "wss://nos.lol",
+  "wss://nostr.wine",
 ];

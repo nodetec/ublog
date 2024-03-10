@@ -1,81 +1,16 @@
 <script lang="ts">
-  import { NDKEvent, NDKKind } from "@nostr-dev-kit/ndk";
-  import ndk from "~/lib/stores/ndk";
-  import session from "~/lib/stores/session";
-  import { sudo } from "~/lib/utils/login";
-  import { dateToUnix } from "~/lib/utils/time";
+  import { NDKEvent } from "@nostr-dev-kit/ndk";
   import { getZapsTotalAmount } from "~/lib/utils/nip57";
+  import {
+    upVotes,
+    downVotes,
+    upVoted,
+    downVoted,
+  } from "$lib/stores/reactions";
+  import { downVote, upVote } from "~/lib/utils/nip07";
 
-  export let articleId: string;
-  export let articlePubkey: string;
-  export let reactions: NDKEvent[];
+  export let article: NDKEvent;
   export let zaps: NDKEvent[];
-
-  let upVotes: NDKEvent[] = [];
-  let downVotes: NDKEvent[] = [];
-  let upVotesCount = 0;
-  let downVotesCount = 0;
-
-  $: upVotes = reactions.filter((reaction) =>
-    ["", "+", "❤️"].some((react) => react === reaction.content)
-  );
-
-  $: downVotes = reactions.filter((reaction) => reaction.content === "-");
-
-  $: upVotesCount = upVotes.length;
-  $: downVotesCount = downVotes.length;
-
-  let upVoted = false;
-  let downVoted = false;
-
-  $: upVotes.forEach((upVote) => {
-    if (upVote.pubkey === $session?.pubkey) {
-      upVoted = true;
-    }
-  });
-
-  $: downVotes.forEach((downVote) => {
-    if (downVote.pubkey === $session?.pubkey) {
-      downVoted = true;
-    }
-  });
-
-  async function vote(content: string) {
-    const event = new NDKEvent($ndk, {
-      pubkey: $session!.pubkey,
-      kind: NDKKind.Reaction,
-      created_at: dateToUnix(),
-      content,
-      tags: [
-        ["e", articleId],
-        ["p", articlePubkey],
-        ["k", NDKKind.Article.toString()],
-      ],
-    });
-    await event.publish();
-  }
-
-  function upVote() {
-    sudo(
-      () =>
-        !upVoted &&
-        vote("+").then(() => {
-          upVotesCount++;
-          upVoted = true;
-        })
-    );
-  }
-
-  function downVote() {
-    sudo(
-      () =>
-        !downVoted &&
-        vote("-").then(() => {
-          downVotesCount++;
-          downVoted = true;
-        })
-    );
-  }
 </script>
 
 <div class="HBLA_Details">
@@ -120,10 +55,10 @@
     </p>
   </div>
   <button
-    disabled={upVoted}
-    on:click={upVote}
+    disabled={$upVoted}
+    on:click={() => upVote(article)}
     id="reactUp"
-    class:HBLA_D_CRUActive={upVoted}
+    class:HBLA_D_CRUActive={$upVoted}
     class="HBLA_Details_Card HBLA_D_CReactUp"
   >
     <div class="HBLA_Details_CardVisual">
@@ -141,12 +76,12 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">{upVotesCount}</p>
+    <p class="HBLA_Details_CardText">{$upVotes.length}</p>
   </button>
   <button
-    disabled={downVoted}
-    on:click={downVote}
-    class:HBLA_D_CRDActive={downVoted}
+    disabled={$downVoted}
+    on:click={() => downVote(article)}
+    class:HBLA_D_CRDActive={$downVoted}
     id="reactDown"
     class="HBLA_Details_Card HBLA_D_CReactDown"
   >
@@ -165,7 +100,7 @@
         ></path>
       </svg>
     </div>
-    <p class="HBLA_Details_CardText">{downVotesCount}</p>
+    <p class="HBLA_Details_CardText">{$downVotes.length}</p>
   </button>
 </div>
 
