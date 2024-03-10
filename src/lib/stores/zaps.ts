@@ -1,7 +1,17 @@
 import { type NostrEvent } from "@nostr-dev-kit/ndk";
-import { writable } from "svelte/store";
+import { get, writable } from "svelte/store";
+import session from "./session";
 
 export const zaps = writable<NostrEvent[]>([]);
+
+export const zapped = writable(false);
+
+zaps.subscribe((current) => {
+  const s = get(session);
+  if (!s) return;
+
+  zapped.set(current.some((zap) => zap.pubkey === s.pubkey));
+});
 
 interface ZapOpts {
   amount: number;

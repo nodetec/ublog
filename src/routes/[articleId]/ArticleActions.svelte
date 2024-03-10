@@ -8,7 +8,14 @@
     downVoted,
   } from "$lib/stores/reactions";
   import { downVote, upVote } from "$lib/utils/nip07";
-  import { zaps, togglePopup, setZapAction, zapOpts } from "$lib/stores/zaps";
+  import {
+    zaps,
+    togglePopup,
+    setZapAction,
+    zapOpts,
+    zapped,
+    hidePopup,
+  } from "$lib/stores/zaps";
   import { sudo } from "~/lib/utils/login";
 
   export let article: NDKEvent;
@@ -16,8 +23,13 @@
   async function zapArticle() {
     const { amount, comment } = $zapOpts;
     try {
-      await sudo(async () => {
-        await article.zap(amount, comment);
+      sudo(async () => {
+        try {
+          await article.zap(amount, comment);
+          hidePopup();
+        } catch (err) {
+          console.error(err);
+        }
       });
     } catch (err) {
       console.error(err);
@@ -55,6 +67,7 @@
     on:click={handleZapClick}
     id="reactBolt"
     class="HBLA_Details_Card HBLA_D_CBolt"
+    class:HBLA_D_CBActive={$zapped}
   >
     <div class="HBLA_Details_CardVisual">
       <svg
@@ -231,9 +244,9 @@
     color: rgba(255, 114, 54, 0.85);
   }
 
-  /* .HBLA_Details_Card.HBLA_D_CBolt.HBLA_D_CBActive {
+  .HBLA_Details_Card.HBLA_D_CBolt.HBLA_D_CBActive {
     color: rgba(255, 255, 0, 0.85);
-  } */
+  }
 
   /* .HBLA_Details_Card:hover {
   } */
