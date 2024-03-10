@@ -14,16 +14,14 @@
   import { fetchAuthor } from "$lib/stores/author";
   import { title, logo } from "~/config";
 
-  onMount(async () => {
-    $ndk
-      .connect()
-      .then(() => {
-        fetchAuthor();
-        console.log("%cNDK connected", "color: #00FF00");
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+  onMount(async function () {
+    try {
+      await $ndk.connect();
+      fetchAuthor();
+      console.log("%cNDK connected", "color: #00FF00; font-size: 32px;");
+    } catch (err) {
+      console.error(err);
+    }
   });
 </script>
 

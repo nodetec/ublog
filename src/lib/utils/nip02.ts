@@ -6,7 +6,7 @@ import { sudo } from "$lib/utils/login";
 import { dateToUnix } from "$lib/utils/time";
 import { npub } from "~/config";
 import { decode } from "nostr-tools/nip19";
-import { following } from "../stores/follow";
+import { following } from "$lib/stores/contacts";
 
 export function getContacts() {
   return sudo(async function () {

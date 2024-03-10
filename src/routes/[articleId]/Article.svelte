@@ -2,11 +2,12 @@
   import ArticleTags from "./ArticleTags.svelte";
   import ArticleActions from "./ArticleActions.svelte";
   import ArticleDetails from "./ArticleDetails.svelte";
-  import { NDKKind, type NDKEvent } from "@nostr-dev-kit/ndk";
+  import { NDKKind, type NDKEvent, type NostrEvent } from "@nostr-dev-kit/ndk";
   import SvelteMarkdown from "svelte-markdown";
   import { onMount } from "svelte";
   import ndk from "$lib/stores/ndk";
   import { reactions } from "$lib/stores/reactions";
+  import { zaps } from "$lib/stores/zaps";
 
   export let article: NDKEvent;
 
@@ -22,9 +23,7 @@
     new Set(article.getMatchingTags("t").map((t) => t[1]))
   );
 
-  let zaps: NDKEvent[] = [];
-
-  onMount(async () => {
+  onMount(async function () {
     const events = Array.from(
       await $ndk.fetchEvents({
         kinds: [NDKKind.Reaction, NDKKind.Zap],
@@ -32,8 +31,21 @@
       })
     );
 
-    reactions.set(events.filter((e) => e.kind === NDKKind.Reaction));
-    zaps = events.filter((e) => e.kind === NDKKind.Zap);
+    const reactionEvents: NostrEvent[] = [];
+    const zapEvents: NostrEvent[] = [];
+
+    for (const event of events) {
+      const nostrEvent = event.rawEvent();
+      if (event.kind === NDKKind.Reaction) {
+        reactionEvents.push(nostrEvent);
+      }
+      if (event.kind === NDKKind.Zap) {
+        zapEvents.push(nostrEvent);
+      }
+    }
+
+    reactions.set(reactionEvents);
+    zaps.set(zapEvents);
   });
 </script>
 
@@ -60,7 +72,7 @@
       <ArticleTags {tags} />
     </div>
   </div>
-  <ArticleActions {article} {zaps} />
+  <ArticleActions {article} />
   <ArticleDetails {createdAt} {publishedAt} {client} />
 </div>
 

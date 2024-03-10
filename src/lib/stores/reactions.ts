@@ -1,11 +1,11 @@
-import type { NDKEvent } from "@nostr-dev-kit/ndk";
+import type { NostrEvent } from "@nostr-dev-kit/ndk";
 import { get, writable } from "svelte/store";
 import session from "$lib/stores/session";
 
-export const reactions = writable<NDKEvent[]>([]);
+export const reactions = writable<NostrEvent[]>([]);
 
-export const upVotes = writable<NDKEvent[]>([]);
-export const downVotes = writable<NDKEvent[]>([]);
+export const upVotes = writable<NostrEvent[]>([]);
+export const downVotes = writable<NostrEvent[]>([]);
 
 export const upVoted = writable(false);
 export const downVoted = writable(false);

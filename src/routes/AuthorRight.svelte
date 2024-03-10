@@ -1,7 +1,7 @@
 <script lang="ts">
   import { logo, npub } from "~/config";
   import { author } from "~/lib/stores/author";
-  import { following, getFollowing } from "~/lib/stores/follow";
+  import { following, getFollowing } from "~/lib/stores/contacts";
   import PopUpQr from "./PopUp_QR.svelte";
   import { onMount } from "svelte";
   import { follow, unFollow } from "~/lib/utils/nip02";

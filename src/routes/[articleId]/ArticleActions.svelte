@@ -1,16 +1,16 @@
 <script lang="ts">
   import { NDKEvent } from "@nostr-dev-kit/ndk";
-  import { getZapsTotalAmount } from "~/lib/utils/nip57";
+  import { getZapsTotalAmount } from "$lib/utils/nip57";
   import {
     upVotes,
     downVotes,
     upVoted,
     downVoted,
   } from "$lib/stores/reactions";
-  import { downVote, upVote } from "~/lib/utils/nip07";
+  import { downVote, upVote } from "$lib/utils/nip07";
+  import { zaps } from "$lib/stores/zaps";
 
   export let article: NDKEvent;
-  export let zaps: NDKEvent[];
 </script>
 
 <div class="HBLA_Details">
@@ -51,7 +51,7 @@
       </svg>
     </div>
     <p class="HBLA_Details_CardText">
-      {getZapsTotalAmount(zaps)}
+      {getZapsTotalAmount($zaps)}
     </p>
   </div>
   <button
