@@ -9,7 +9,8 @@ export function upVote(article: NDKEvent) {
   sudo(async function () {
     try {
       const event = await article.react("+");
-      upVotes.update((ups) => [...ups, event]);
+      const nostrEvent = event.rawEvent();
+      upVotes.update((ups) => [...ups, nostrEvent]);
     } catch (err) {
       console.error(err);
     }
@@ -22,7 +23,8 @@ export function downVote(article: NDKEvent) {
   sudo(async function () {
     try {
       const event = await article.react("-");
-      downVotes.update((downs) => [...downs, event]);
+      const nostrEvent = event.rawEvent();
+      downVotes.update((downs) => [...downs, nostrEvent]);
     } catch (err) {
       console.error(err);
     }

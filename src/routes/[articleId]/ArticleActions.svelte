@@ -154,13 +154,13 @@
     min-width: 50px;
   }
 
-  .HBLA_Details_Reaction.HBLA_D_RAlt {
-  }
+  /* .HBLA_Details_Reaction.HBLA_D_RAlt {
+  } */
 
-  .HBLA_Details_Reaction.HBLA_D_RAlt:hover > .HBLA_Details_ReactionIcon {
+  /* .HBLA_Details_Reaction.HBLA_D_RAlt:hover > .HBLA_Details_ReactionIcon {
     transition: ease 0.4s;
     color: rgba(148, 255, 65, 0.85);
-  }
+  } */
 
   .HBLA_Details_Card.HBLA_D_CBolt:hover {
     color: rgba(255, 255, 0, 0.85);
@@ -195,8 +195,8 @@
     }
   }
 
-  .HBLA_Details_CardText:hover {
-  }
+  /* .HBLA_Details_CardText:hover {
+  } */
 
   .HBLA_Details_CardVisualIcon {
     transition: ease 0.4s;
@@ -210,10 +210,10 @@
     color: rgba(255, 114, 54, 0.85);
   }
 
-  .HBLA_Details_Card.HBLA_D_CBolt.HBLA_D_CBActive {
+  /* .HBLA_Details_Card.HBLA_D_CBolt.HBLA_D_CBActive {
     color: rgba(255, 255, 0, 0.85);
-  }
+  } */
 
-  .HBLA_Details_Card:hover {
-  }
+  /* .HBLA_Details_Card:hover {
+  } */
 </style>
